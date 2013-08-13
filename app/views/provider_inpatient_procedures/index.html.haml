@@ -1,0 +1,51 @@
+- model_class = ProviderInpatientProcedure
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
+= paginate @provider_inpatient_procedures
+%table.table.table-striped
+  %thead
+    %tr
+      %th= model_class.human_attribute_name(:id)
+      %th= model_class.human_attribute_name(:drg)
+      %th= model_class.human_attribute_name(:provider_id)
+      %th= model_class.human_attribute_name(:provider_name)
+      %th= model_class.human_attribute_name(:provider_street_address)
+      %th= model_class.human_attribute_name(:provider_city)
+      %th= model_class.human_attribute_name(:provider_state)
+      %th= model_class.human_attribute_name(:provider_zipcode)
+      %th= model_class.human_attribute_name(:hospital_referral_region_description)
+      %th= model_class.human_attribute_name(:total_discharges)
+      %th= model_class.human_attribute_name(:average_covered_charges)
+      %th= model_class.human_attribute_name(:average_total_payments)
+      %th= model_class.human_attribute_name(:year)
+      %th= model_class.human_attribute_name(:created_at)
+      %th=t '.actions', :default => t("helpers.actions")
+  %tbody
+    - @provider_inpatient_procedures.each do |provider_inpatient_procedure|
+      %tr
+        %td= link_to provider_inpatient_procedure.id, provider_inpatient_procedure_path(provider_inpatient_procedure)
+        %td= provider_inpatient_procedure.drg
+        %td= provider_inpatient_procedure.provider_id
+        %td= provider_inpatient_procedure.provider_name
+        %td= provider_inpatient_procedure.provider_street_address
+        %td= provider_inpatient_procedure.provider_city
+        %td= provider_inpatient_procedure.provider_state
+        %td= provider_inpatient_procedure.provider_zipcode
+        %td= provider_inpatient_procedure.hospital_referral_region_description
+        %td= provider_inpatient_procedure.total_discharges
+        %td= provider_inpatient_procedure.average_covered_charges
+        %td= provider_inpatient_procedure.average_total_payments
+        %td= provider_inpatient_procedure.year
+        %td=l provider_inpatient_procedure.created_at
+        %td
+          = link_to t('.edit', :default => t("helpers.links.edit")), edit_provider_inpatient_procedure_path(provider_inpatient_procedure), :class => 'btn btn-mini'
+          = link_to t('.destroy', :default => t("helpers.links.destroy")), provider_inpatient_procedure_path(provider_inpatient_procedure), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
+
+- if false
+  %hr
+  %h2 Import Provider Inpatient Procedures
+  = form_tag import_provider_inpatient_procedures_path, multipart: true do
+    = file_field_tag :file
+    = submit_tag "Import"
+
+= link_to t('.new', :default => t("helpers.links.new")), new_provider_inpatient_procedure_path, :class => 'btn btn-primary'

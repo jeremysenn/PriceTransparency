@@ -1,0 +1,34 @@
+- model_class = OutpatientProcedure
+.row-fluid
+  .span12
+    %h2
+      %i.icon-medkit
+      =t '.title', :default => model_class.model_name.human.pluralize.titleize
+    %h4
+      .muted.pull-right
+        Year 2011
+%table.table.table-striped.sortable{"data-provides" => "rowlink"}
+  %thead
+    %tr
+      %th{:style => 'display:none;'}= "Action"
+      %th= simple_sortable 'apc', 'APC'
+      %th= simple_sortable 'average_estimated_submitted_charges', 'Avg. Submitted Charges'
+      %th= simple_sortable 'average_total_payments', 'Avg. Total Payments'
+      %th= simple_sortable 'outpatient_services', 'Services Performed'
+
+  %tbody
+    - @outpatient_procedures.each do |outpatient_procedure|
+      %tr
+        %td{:style => 'display:none;'}= link_to "Show", outpatient_procedure_path(outpatient_procedure)
+        %td= outpatient_procedure.apc
+        %td= number_to_currency(outpatient_procedure.average_estimated_submitted_charges)
+        %td= number_to_currency(outpatient_procedure.average_total_payments)
+        %td= outpatient_procedure.outpatient_services
+
+- if false
+  = link_to t('.new', :default => t("helpers.links.new")), new_outpatient_procedure_path, :class => 'btn btn-primary'
+  %hr
+  %h2 Import Procedures
+  = form_tag import_outpatient_procedures_path, multipart: true do
+    = file_field_tag :file
+    = submit_tag "Import"

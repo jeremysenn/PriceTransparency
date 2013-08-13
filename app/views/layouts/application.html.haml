@@ -1,0 +1,38 @@
+!!!
+%html
+  %head
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+      %title= content_for?(:title) ? yield(:title) : "Procedure Price Check"
+      = favicon_link_tag 'favicon.ico'
+      %meta{:content => content_for?(:description) ? yield(:description) : "Procedure Price Check", :name => "description"}
+        = stylesheet_link_tag "application", :media => "all"
+        = javascript_include_tag "application"
+        = stylesheet_link_tag "//netdna.bootstrapcdn.com/font-awesome/3.2.0/css/font-awesome.css"
+        = csrf_meta_tags
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        = yield(:head)
+  %body{:class => "#{controller_name} #{action_name}"}
+    .navbar.navbar-fixed-top
+      %nav.navbar-inner
+        .container
+          = render 'layouts/navigation'
+    #main{:role => "main"}
+      .container
+        .content
+          .row
+            .span12
+              = render 'layouts/messages'
+              = yield
+    %div{:class => "navbar navbar-fixed-bottom"}
+      %p{:class => "muted credit", :style => "text-align:center"}
+        %i.icon-ok-sign
+        = "Procedure Price Check - Copyright #{Date.today.year}"
+      - if false
+        #footer
+          .container
+            %p{:class => "muted credit", :style => "text-align:center"}
+              %i.icon-ok-sign
+              = "Procedure Price Check - Copyright #{Date.today.year}"
+      / ! end of .container
+    / ! end of #main
+

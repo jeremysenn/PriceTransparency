@@ -1,0 +1,37 @@
+.span4
+  %p
+    %strong Address
+    %br
+    = @health_provider.pretty_address
+  %p
+    %strong= "Region"
+    %br
+    = @health_provider.hospital_referral_region_description
+  %p
+    %strong= "ID Number"
+    %br
+    = @health_provider.provider_id
+.span4
+  %p= link_to image_tag("http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@health_provider.latitude}%2C#{@health_provider.longitude}"), '#map', "data-toggle" => "modal", :type => "button", :class => 'thumbnail'
+.span4
+  %p= link_to image_tag("http://maps.googleapis.com/maps/api/streetview?size=2000x200&location=#{@health_provider.latitude},%20#{@health_provider.longitude}&heading=235&sensor=false"), '#street', "data-toggle" => "modal", :type => "button", :class => 'thumbnail'
+%div{:id => "map", :class => "modal", :style => "display:none;"}
+  .modal-header
+    = link_to "×", '#', :class => "close", "data-dismiss" => "modal"
+    %p
+      %strong= @health_provider.name
+    = @health_provider.full_address
+  .modal-body
+    = image_tag "http://maps.google.com/maps/api/staticmap?size=550x300&sensor=false&zoom=16&markers=#{@health_provider.latitude}%2C#{@health_provider.longitude}"
+  .modal-footer
+    = link_to 'Close', '#', :class => 'btn', "data-dismiss" => "modal"
+%div{:id => "street", :class => "modal", :style => "display:none;"}
+  .modal-header
+    = link_to "×", '#', :class => "close", "data-dismiss" => "modal"
+    %p
+      %strong= @health_provider.name
+    = @health_provider.full_address
+  .modal-body
+    = image_tag "http://maps.googleapis.com/maps/api/streetview?size=2000x200&location=#{@health_provider.latitude},%20#{@health_provider.longitude}&heading=235&sensor=false"
+  .modal-footer
+    = link_to 'Close', '#', :class => 'btn', "data-dismiss" => "modal"

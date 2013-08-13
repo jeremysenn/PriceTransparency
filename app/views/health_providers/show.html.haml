@@ -1,0 +1,48 @@
+- model_class = HealthProvider
+.row-fluid
+  .span12
+    %h2
+      %i.icon-hospital
+      = "#{@health_provider.name} (ID # #{@health_provider.provider_id})"
+    %h4
+      .muted.pull-right
+        = " Year #{@health_provider.year}"
+.row-fluid
+  .span12
+    .tabbable{}
+      .btn-group
+        %ul.nav.nav-pills
+          %li
+            %a{:href => "#procedures", :data => {:toggle => "tab"}}
+              %button.btn
+                %i.icon-medkit
+                = "PROCEDURES"
+          %li
+            %a{:href => "#graphs", :data => {:toggle => "tab"}}
+              %button.btn
+                %i.icon-bar-chart
+                = "GRAPHS"
+          %li
+            %a{:href => "#location", :data => {:toggle => "tab"}}
+              %button.btn
+                %i.icon-map-marker
+                = "LOCATION"
+            
+      %hr{:style => "border: 1px solid #B7410E; margin-top:0px;"}
+    .tab-content{}
+      .tab-pane.active{:id => "graphs"}
+        = render :partial => 'graphs'
+      .tab-pane{:id => "location"}
+        = render :partial => 'location'
+      .tab-pane{:id => "procedures"}
+        .btn-group.pull-right{"data-toggle" => "buttons-radio"}
+          %button.btn.active
+            %a{:href => '#'}
+              Outpatient
+          %button.btn
+            %a{:href => '#'}
+              Inpatient
+        %br
+        %br
+        = render :partial => 'outpatient_procedures'
+        = render :partial => 'inpatient_procedures'

@@ -1,0 +1,50 @@
+- model_class = StateOutpatientProcedure
+.row-fluid
+  .span12
+    %h2
+      %a{:href => outpatient_procedure_path(@outpatient_procedure)}
+        %i.icon-medkit
+        = "#{@state_outpatient_procedure.apc}"
+    %h4
+      = "State of #{@state_outpatient_procedure.state_name}"
+    .muted.pull-right
+      %strong= " Year #{@state_outpatient_procedure.year}"
+.row-fluid
+  .span12
+    .muted
+      %table.table.table-striped
+        %tr
+          %td= "State Average Submitted Charges: #{number_to_currency(@state_outpatient_procedure.average_estimated_submitted_charges)}"
+          %td= "State Average Total Payments: #{number_to_currency(@state_outpatient_procedure.average_total_payments)}"
+          %td= "State Services Performed: #{@state_outpatient_procedure.outpatient_services}"
+        %tr
+          %td= "National Average Submitted Charges: #{number_to_currency(@outpatient_procedure.average_estimated_submitted_charges)}"
+          %td= "National Average Total Payments: #{number_to_currency(@outpatient_procedure.average_total_payments)}"
+          %td= "National Services Performed: #{@outpatient_procedure.outpatient_services}"
+    .tabbable{}
+      .btn-group
+        %ul.nav.nav-pills
+          - if false
+            %li
+              %a{:href => "#graphs", :data => {:toggle => "tab"}}
+                %button.btn
+                  %i.icon-bar-chart
+                  = "GRAPHS"
+          %li
+            %a{:href => "#hospitals", :data => {:toggle => "tab"}}
+              %button.btn
+                %i.icon-hospital
+                = "Hospitals"
+    %hr{:style => "border: 1px solid #B7410E; margin-top:0px;"}
+    .tab-content{}
+      - if false
+        .tab-pane.active{:id => "graphs"}
+          = render :partial => 'graphs'
+      .tab-pane.active{:id => "hospitals"}
+        = render :partial => 'providers'
+
+- if false
+  .form-actions
+    = link_to t('.back', :default => t("helpers.links.back")), state_outpatient_procedures_path, :class => 'btn'
+    = link_to t('.edit', :default => t("helpers.links.edit")), edit_state_outpatient_procedure_path(@state_outpatient_procedure), :class => 'btn'
+    = link_to t('.destroy', :default => t("helpers.links.destroy")), state_outpatient_procedure_path(@state_outpatient_procedure), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'

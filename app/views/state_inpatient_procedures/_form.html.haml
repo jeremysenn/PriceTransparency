@@ -1,0 +1,10 @@
+= simple_form_for @state_inpatient_procedure, :html => { :class => 'form-horizontal' } do |f|
+  = f.input :drg
+  = f.input :provider_state
+  = f.input :total_discharges
+  = f.input :average_covered_charges
+  = f.input :average_total_payments
+  = f.input :year
+  .form-actions
+    = f.button :submit, :class => 'btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), state_inpatient_procedures_path, :class => 'btn'

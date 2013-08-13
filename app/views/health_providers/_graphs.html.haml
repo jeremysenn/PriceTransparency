@@ -1,0 +1,15 @@
+.row-fluid
+  .span6
+    %h5 Outpatient Procedures Services Performed
+    = content_tag :div, "", id: "provider_outpatient_services_graph", data: {procedures: procedure_services_data(@provider_outpatient_procedures)}
+  .span6
+    %h5 Outpatient Procedures Average Submitted Charges
+    = content_tag :div, "", id: "provider_outpatient_charges_donut_graph", data: {procedures: procedure_charges_donut_data(@provider_outpatient_procedures)}
+.row-fluid
+  .span6
+    %h5= "Outpatient Procedures Average Submitted Charges"
+    = content_tag :div, "", id: "provider_outpatient_procedure_graph", data: {procedures: procedure_data(@provider_outpatient_procedures)}
+    =# content_tag :div, "", id: "provider_outpatient_procedure_graph", data: {procedures: @provider_outpatient_procedures}
+  .span6
+    %h5= "Outpatient Procedures Average Total Payments"
+    = content_tag :div, "", id: "provider_outpatient_procedure_payment_graph", data: {procedures: procedure_payment_data(@provider_outpatient_procedures)}

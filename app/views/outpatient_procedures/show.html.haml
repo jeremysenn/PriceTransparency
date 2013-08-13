@@ -1,0 +1,99 @@
+- model_class = OutpatientProcedure
+.row-fluid
+  .span12
+    %h2
+      %i.icon-medkit
+      = @outpatient_procedure.apc
+    %h4
+      = "National"
+      .muted.pull-right
+        = " Year #{@outpatient_procedure.year}"
+
+- if false
+  .container{:style => 'margin-top: 30px; width: 400px;'}
+    #content{:style => "display: none;"}
+    #loading{:style => "display: block;"}
+      .progress.progress-striped.active
+        .bar{:style => "width: 0%;"}
+.row-fluid
+  - if false
+    .span2
+      %div{:id => "sort_options"}
+        = render 'sort_options'
+  .span12
+    = @apc
+    .muted
+      %table.table.table-striped
+        %tr.error
+          %td= "National Average Submitted Charges: #{number_to_currency(@outpatient_procedure.average_estimated_submitted_charges, :precision => 0)}"
+          %td= "National Average Total Payments: #{number_to_currency(@outpatient_procedure.average_total_payments, :precision => 0)}"
+          %td= "National Services Performed: #{@outpatient_procedure.outpatient_services}"
+    .tabbable{}
+      .btn-group
+        %ul.nav.nav-pills
+          %li
+            %a{:href => "#hospitals", :data => {:toggle => "tab"}}
+              %button.btn
+                %i.icon-hospital
+                = "Hospitals"
+          %li
+            %a{:href => "#states", :data => {:toggle => "tab"}}
+              %button.btn
+                %i.icon-star-empty
+                = "States"
+          %li
+            %a{:href => "#graphs", :data => {:toggle => "tab"}}
+              %button.btn
+                %i.icon-bar-chart
+                = "Graphs"
+            
+          - if false
+            %li
+              %a{:href => "#regions", :data => {:toggle => "tab"}}
+                %button.btn
+                  %i.icon-map-marker
+                  = "Regions"
+    .tab-content{}
+      .tab-pane{:id => "hospitals"}
+        = form_tag(outpatient_procedure_path(@outpatient_procedure), :class => "form-inline", :method => "get") do
+          = select_tag :radius, options_for_select([['Within 10 Miles', 10], ['Within 50 Miles', 50], ['Within 100 Miles', 100], ['Within 500 Miles', 500]], params[:radius]), :include_blank => false, :class => "selectpicker show-tick show-menu-arrow span2"
+          = text_field_tag :zip, nil, :placeholder => "Zipcode", :class => 'span2', :value => params[:zip]
+          = button_tag(:type => 'submit', :class => 'btn btn-success') do
+            Go
+          = link_to "Clear", outpatient_procedure_path(@outpatient_procedure)
+        - unless @provider_outpatient_procedures.blank?
+          %div{:id => "hospital_providers"}
+            = render 'providers'
+        - else
+          .well
+            Nothing found
+            %br
+            &nbsp;
+      .tab-pane{:id => "states"}
+        = render 'states'
+      .tab-pane.active{:id => "graphs"}
+        = form_tag(outpatient_procedure_path(@outpatient_procedure), :class => "form-inline", :method => "get") do
+          = select_tag :radius, options_for_select([['Within 10 Miles', 10], ['Within 50 Miles', 50], ['Within 100 Miles', 100], ['Within 500 Miles', 500]], params[:radius]), :include_blank => false, :class => "selectpicker show-tick show-menu-arrow span2"
+          = text_field_tag :zip, nil, :placeholder => "Zipcode", :class => 'span2', :value => params[:zip]
+          = button_tag(:type => 'submit', :class => 'btn btn-success') do
+            Go
+          = link_to "Clear", outpatient_procedure_path(@outpatient_procedure)
+        - unless @provider_outpatient_procedures.blank?
+          %div{:id => "hospital_and_state_graphs"}
+            = render :partial => 'graphs'
+        - else
+          .well
+            Nothing found
+            %br
+            &nbsp;
+
+- if false
+  .form-actions
+    = link_to t('.back', :default => t("helpers.links.back")), outpatient_procedures_path, :class => 'btn'
+    = link_to t('.edit', :default => t("helpers.links.edit")), edit_outpatient_procedure_path(@outpatient_procedure), :class => 'btn'
+    = link_to t('.destroy', :default => t("helpers.links.destroy")), outpatient_procedure_path(@outpatient_procedure), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
+
+:javascript
+  $('.selectpicker').selectpicker({
+    style: 'btn-warning'
+  });

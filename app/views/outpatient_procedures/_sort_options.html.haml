@@ -1,0 +1,9 @@
+.sidebar-nav{:style => "border-right: 2px solid #B7410E; margin-right: 0; padding-right: 19px;"}
+  %table.sortable
+    %thead
+      %tr
+        %th= sortable 'average_estimated_submitted_charges', 'Avg. Submitted Charges'
+      %tr
+        %th= sortable 'average_total_payments', 'Avg. Total Payments'
+      %tr
+        %th= sortable 'outpatient_services', 'Services Performed'

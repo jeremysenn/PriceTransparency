@@ -1,0 +1,16 @@
+%table.table.table-striped.sortable{"data-provides" => "rowlink"}
+  %thead
+    %tr
+      %th{:style => 'display:none;'}= "Action"
+      %th= simple_sortable 'provider_state', 'State'
+      %th= simple_sortable 'average_covered_charges', 'Avg. Covered Charges'
+      %th= simple_sortable 'average_total_payments', 'Avg. Total Payments'
+      %th= simple_sortable 'total_discharges', 'Total Discharges'
+  %tbody
+    - @state_inpatient_procedures.each do |state_inpatient_procedure|
+      %tr
+        %td{:style => 'display:none;'}= link_to "Show", state_inpatient_procedure_path(state_inpatient_procedure)
+        %td= state_inpatient_procedure.state_name
+        %td= number_to_currency(state_inpatient_procedure.average_covered_charges, :precision => 0)
+        %td= number_to_currency(state_inpatient_procedure.average_total_payments, :precision => 0)
+        %td= state_inpatient_procedure.total_discharges

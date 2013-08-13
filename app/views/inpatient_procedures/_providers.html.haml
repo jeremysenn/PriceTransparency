@@ -1,0 +1,18 @@
+%table.table.table-striped.sortable{"data-provides" => "rowlink"}
+  %thead
+    %tr
+      %th{:style => 'display:none;'}= "Action"
+      %th= sortable 'provider_name', 'Name', params[:zip], params[:radius]
+      %th= sortable 'average_covered_charges', 'Avg. Covered Charges', params[:zip], params[:radius]
+      %th= sortable 'average_total_payments', 'Avg. Total Payments', params[:zip], params[:radius]
+      %th= sortable 'total_discharges', 'Total Discharges', params[:zip], params[:radius]
+      
+  %tbody
+    - @paginated_provider_inpatient_procedures.each do |provider_inpatient_procedure|
+      %tr
+        %td{:style => 'display:none;'}= link_to "Show", provider_inpatient_procedure_path(provider_inpatient_procedure)
+        %td= provider_inpatient_procedure.provider_name
+        %td= number_to_currency(provider_inpatient_procedure.average_covered_charges, :precision => 0)
+        %td= number_to_currency(provider_inpatient_procedure.average_total_payments, :precision => 0)
+        %td= provider_inpatient_procedure.total_discharges
+= paginate @paginated_provider_inpatient_procedures

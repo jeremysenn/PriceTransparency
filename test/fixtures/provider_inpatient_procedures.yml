@@ -1,0 +1,27 @@
+one:
+  drg: MyString
+  provider_id: 1
+  provider_name: MyString
+  provider_street_address: MyString
+  provider_city: MyString
+  provider_state: MyString
+  provider_zipcode: MyString
+  hospital_referral_region_description: MyString
+  total_discharges: 1
+  average_covered_charges: 9.99
+  average_total_payments: 9.99
+  year: 1
+
+two:
+  drg: MyString
+  provider_id: 1
+  provider_name: MyString
+  provider_street_address: MyString
+  provider_city: MyString
+  provider_state: MyString
+  provider_zipcode: MyString
+  hospital_referral_region_description: MyString
+  total_discharges: 1
+  average_covered_charges: 9.99
+  average_total_payments: 9.99
+  year: 1

@@ -1,0 +1,33 @@
+- model_class = StateInpatientProcedure
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human.titleize
+
+%p
+  %strong= model_class.human_attribute_name(:drg) + ':'
+  %br
+  = @state_inpatient_procedure.drg
+%p
+  %strong= model_class.human_attribute_name(:provider_state) + ':'
+  %br
+  = @state_inpatient_procedure.provider_state
+%p
+  %strong= model_class.human_attribute_name(:total_discharges) + ':'
+  %br
+  = @state_inpatient_procedure.total_discharges
+%p
+  %strong= model_class.human_attribute_name(:average_covered_charges) + ':'
+  %br
+  = @state_inpatient_procedure.average_covered_charges
+%p
+  %strong= model_class.human_attribute_name(:average_total_payments) + ':'
+  %br
+  = @state_inpatient_procedure.average_total_payments
+%p
+  %strong= model_class.human_attribute_name(:year) + ':'
+  %br
+  = @state_inpatient_procedure.year
+
+.form-actions
+  = link_to t('.back', :default => t("helpers.links.back")), state_inpatient_procedures_path, :class => 'btn'
+  = link_to t('.edit', :default => t("helpers.links.edit")), edit_state_inpatient_procedure_path(@state_inpatient_procedure), :class => 'btn'
+  = link_to t('.destroy', :default => t("helpers.links.destroy")), state_inpatient_procedure_path(@state_inpatient_procedure), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'

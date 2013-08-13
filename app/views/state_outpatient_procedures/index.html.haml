@@ -1,0 +1,34 @@
+- model_class = StateOutpatientProcedure
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
+%table.table.table-striped
+  %thead
+    %tr
+      %th= model_class.human_attribute_name(:id)
+      %th= model_class.human_attribute_name(:apc)
+      %th= model_class.human_attribute_name(:provider_state)
+      %th= model_class.human_attribute_name(:outpatient_services)
+      %th= model_class.human_attribute_name(:average_estimated_submitted_charges)
+      %th= model_class.human_attribute_name(:average_total_payments)
+      %th= model_class.human_attribute_name(:created_at)
+      %th= "Year"
+  %tbody
+    - @state_outpatient_procedures.each do |state_outpatient_procedure|
+      %tr
+        %td= link_to state_outpatient_procedure.id, state_outpatient_procedure_path(state_outpatient_procedure)
+        %td= state_outpatient_procedure.apc
+        %td= state_outpatient_procedure.provider_state
+        %td= state_outpatient_procedure.outpatient_services
+        %td= state_outpatient_procedure.average_estimated_submitted_charges
+        %td= state_outpatient_procedure.average_total_payments
+        %td=l state_outpatient_procedure.created_at
+        %td= state_outpatient_procedure.year
+
+= link_to t('.new', :default => t("helpers.links.new")), new_state_outpatient_procedure_path, :class => 'btn btn-primary'
+
+- if false
+  %hr
+  %h2 Import State Procedures
+  = form_tag import_state_outpatient_procedures_path, multipart: true do
+    = file_field_tag :file
+    = submit_tag "Import"

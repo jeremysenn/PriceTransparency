@@ -1,0 +1,24 @@
+%table.table.table-striped{"data-provides" => "rowlink"}
+  %thead
+    %tr
+      %th{:style => 'display:none;'}= "Action"
+      %th= "Procedure"
+      %th= "Provider Charge"
+      %th= "#{@health_provider.state_name} Average Charge"
+      %th= "National Average Charge"
+      %th= "Provider Paid"
+      %th= "#{@health_provider.state_name} Average Paid"
+      %th= "National Average Paid"
+      %th= "Services Performed"
+  %tbody
+    - @provider_outpatient_procedures.each do |provider_outpatient_procedure|
+      %tr
+        %td{:style => 'display:none;'}= link_to "Show", provider_outpatient_procedure_path(provider_outpatient_procedure)
+        %td= provider_outpatient_procedure.apc
+        %td= number_to_currency(provider_outpatient_procedure.average_estimated_submitted_charges)
+        %td= number_to_currency(provider_outpatient_procedure.state_average_charge) unless provider_outpatient_procedure.state_average_charge.nil?
+        %td= number_to_currency(provider_outpatient_procedure.national_average_charge) unless provider_outpatient_procedure.national_average_charge.nil?
+        %td= number_to_currency(provider_outpatient_procedure.average_total_payments)
+        %td= number_to_currency(provider_outpatient_procedure.state_average_paid) unless provider_outpatient_procedure.state_average_paid.nil?
+        %td= number_to_currency(provider_outpatient_procedure.national_average_paid) unless provider_outpatient_procedure.national_average_paid.nil?
+        %td= provider_outpatient_procedure.outpatient_services

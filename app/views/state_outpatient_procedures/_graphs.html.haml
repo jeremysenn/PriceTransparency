@@ -1,0 +1,24 @@
+.span12
+  .pagination-centered
+    %h4= "STATE OF #{@state_outpatient_procedure.state_name.upcase} AVERAGE ESTIMATED SUBMITTED CHARGES BY HOSPITAL"
+    %p.muted
+      High:
+      Low:
+      = "State Average: #{number_to_currency(@state_outpatient_procedure.average_estimated_submitted_charges)}"
+  = content_tag :div, "", id: "state_outpatient_procedure_submitted_charges_graph", data: {procedures: state_outpatient_procedure_submitted_charges_data(@provider_outpatient_procedures)}
+
+  .pagination-centered
+    %h4= "STATE OF #{@state_outpatient_procedure.state_name.upcase} AVERAGE TOTAL PAYMENTS BY HOSPITAL"
+    %p.muted
+      High:
+      Low:
+      = "State Average: #{number_to_currency(@state_outpatient_procedure.average_total_payments)}"
+  = content_tag :div, "", id: "state_outpatient_procedure_total_payments_graph", data: {procedures: state_outpatient_procedure_total_payments_data(@provider_outpatient_procedures)}
+
+  .pagination-centered
+    %h4= "STATE OF #{@state_outpatient_procedure.state_name.upcase} AVERAGE ESTIMATED SUBMITTED CHARGES & AVERAGE TOTAL PAYMENTS BY HOSPITAL"
+    %p.muted
+      High:
+      Low:
+      = "State Average: #{number_to_currency(@state_outpatient_procedure.average_total_payments)}"
+  = content_tag :div, "", id: "state_outpatient_procedure_submitted_charges_and_total_payments_graph", data: {procedures: state_outpatient_procedure_submitted_charges_and_total_payments_data(@provider_outpatient_procedures)}

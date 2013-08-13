@@ -1,0 +1,16 @@
+= simple_form_for @provider_inpatient_procedure, :html => { :class => 'form-horizontal' } do |f|
+  = f.input :drg
+  = f.input :provider_id
+  = f.input :provider_name
+  = f.input :provider_street_address
+  = f.input :provider_city
+  = f.input :provider_state
+  = f.input :provider_zipcode
+  = f.input :hospital_referral_region_description
+  = f.input :total_discharges
+  = f.input :average_covered_charges
+  = f.input :average_total_payments
+  = f.input :year
+  .form-actions
+    = f.button :submit, :class => 'btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), provider_inpatient_procedures_path, :class => 'btn'

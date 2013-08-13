@@ -1,0 +1,11 @@
+.row-fluid
+  .span6
+    %h5 Average Estimated Submitted Charges
+    = content_tag :div, "", id: "provider_outpatient_procedure_submitted_charges_graph", data: {procedure: procedure_submitted_charges_data(@provider_outpatient_procedure)}
+  .span6
+    %h5 Average Total Payments
+    = content_tag :div, "", id: "provider_outpatient_procedure_total_payments_graph", data: {procedure: procedure_total_payments_data(@provider_outpatient_procedure)}
+- if false
+  .pagination-centered
+    %h5 AVERAGE ESTIMATED SUBMITTED CHARGES & AVERAGE TOTAL PAYMENTS
+  = content_tag :div, "", id: "provider_outpatient_procedure_submitted_charges_and_total_payments_graph", data: {procedure: procedure_submitted_charges_and_total_payments_data(@provider_outpatient_procedure)}

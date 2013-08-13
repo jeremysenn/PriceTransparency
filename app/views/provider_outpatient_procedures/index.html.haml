@@ -1,0 +1,47 @@
+- model_class = ProviderOutpatientProcedure
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
+= paginate @provider_outpatient_procedures
+%table.table.table-striped
+  %thead
+    %tr
+      %th= model_class.human_attribute_name(:id)
+      %th= model_class.human_attribute_name(:apc)
+      %th= model_class.human_attribute_name(:provider_id)
+      %th= model_class.human_attribute_name(:provider_name)
+      %th= model_class.human_attribute_name(:provider_street_address)
+      %th= model_class.human_attribute_name(:provider_city)
+      %th= model_class.human_attribute_name(:provider_state)
+      %th= model_class.human_attribute_name(:provider_zipcode)
+      %th= model_class.human_attribute_name(:hospital_referral_region_description)
+      %th= model_class.human_attribute_name(:outpatient_services)
+      %th= model_class.human_attribute_name(:average_estimated_submitted_charges)
+      %th= model_class.human_attribute_name(:average_total_payments)
+      %th= model_class.human_attribute_name(:year)
+      %th= model_class.human_attribute_name(:created_at)
+  %tbody
+    - @provider_outpatient_procedures.each do |provider_outpatient_procedure|
+      %tr
+        %td= link_to provider_outpatient_procedure.id, provider_outpatient_procedure_path(provider_outpatient_procedure)
+        %td= provider_outpatient_procedure.apc
+        %td= provider_outpatient_procedure.provider_id
+        %td= provider_outpatient_procedure.provider_name
+        %td= provider_outpatient_procedure.provider_street_address
+        %td= provider_outpatient_procedure.provider_city
+        %td= provider_outpatient_procedure.provider_state
+        %td= provider_outpatient_procedure.provider_zipcode
+        %td= provider_outpatient_procedure.hospital_referral_region_description
+        %td= provider_outpatient_procedure.outpatient_services
+        %td= provider_outpatient_procedure.average_estimated_submitted_charges
+        %td= provider_outpatient_procedure.average_total_payments
+        %td= provider_outpatient_procedure.year
+        %td=l provider_outpatient_procedure.created_at
+
+= link_to t('.new', :default => t("helpers.links.new")), new_provider_outpatient_procedure_path, :class => 'btn btn-primary'
+
+- if false
+  %hr
+  %h2 Import Provider Procedures
+  = form_tag import_provider_outpatient_procedures_path, multipart: true do
+    = file_field_tag :file
+    = submit_tag "Import"

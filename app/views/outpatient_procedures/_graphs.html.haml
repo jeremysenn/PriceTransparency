@@ -1,0 +1,104 @@
+.row-fluid
+  .span12
+    %table.table.sortable
+      %thead
+        %tr
+          %th{:style => 'display:none;'}= "Action"
+          %th= sortable 'provider_name', 'Name', params[:zip], params[:radius]
+          %th= sortable 'average_estimated_submitted_charges', 'Avg. Submitted Charges', params[:zip], params[:radius]
+          %th= sortable 'average_total_payments', 'Avg. Total Payments', params[:zip], params[:radius]
+          %th= sortable 'outpatient_services', 'Services Performed', params[:zip], params[:radius]
+    - if true
+      %hr{:style => "border: 1px solid lightgrey; margin-top:0px;"}
+.row-fluid
+  .span4
+    %h5 Charges by Hospital
+    .muted
+      %p
+        %strong High:
+        = number_to_currency(@high_charge_provider_outpatient_procedure.average_estimated_submitted_charges, :precision => 0)
+        %br
+        = link_to truncate(@high_charge_provider_outpatient_procedure.provider_name, :length => 30), provider_outpatient_procedure_path(@high_charge_provider_outpatient_procedure)
+      %p
+        %strong Low:
+        = number_to_currency(@low_charge_provider_outpatient_procedure.average_estimated_submitted_charges, :precision => 0)
+        %br
+        = link_to truncate(@low_charge_provider_outpatient_procedure.provider_name, :length => 30), provider_outpatient_procedure_path(@low_charge_provider_outpatient_procedure)
+    = content_tag :div, "", id: "national_outpatient_procedure_submitted_charges_graph", data: {procedures: outpatient_procedure_submitted_charges_data(@provider_outpatient_procedures)}
+
+  .span4
+    %h5 Payments by Hospital
+    .muted
+      %p
+        %strong High:
+        = number_to_currency(@high_payment_provider_outpatient_procedure.average_total_payments, :precision => 0)
+        %br
+        = link_to truncate(@high_payment_provider_outpatient_procedure.provider_name, :length => 30), provider_outpatient_procedure_path(@high_payment_provider_outpatient_procedure)
+      %p
+        %strong Low:
+        = number_to_currency(@low_payment_provider_outpatient_procedure.average_total_payments, :precision => 0)
+        %br
+        = link_to truncate(@low_payment_provider_outpatient_procedure.provider_name, :length => 30), provider_outpatient_procedure_path(@low_payment_provider_outpatient_procedure)
+    = content_tag :div, "", id: "national_outpatient_procedure_total_payments_graph", data: {procedures: outpatient_procedure_total_payments_data(@provider_outpatient_procedures)}
+
+  .span4
+    %h5 Services by Hospital
+    .muted
+      %p
+        %strong High:
+        = @high_services_provider_outpatient_procedure.outpatient_services
+        %br
+        = link_to truncate(@high_services_provider_outpatient_procedure.provider_name, :length => 30), provider_outpatient_procedure_path(@high_services_provider_outpatient_procedure)
+      %p
+        %strong Low:
+        = @low_services_provider_outpatient_procedure.outpatient_services
+        %br
+        = link_to truncate(@low_services_provider_outpatient_procedure.provider_name, :length => 30), provider_outpatient_procedure_path(@low_services_provider_outpatient_procedure)
+    = content_tag :div, "", id: "national_provider_outpatient_procedure_services_graph", data: {procedures: national_provider_outpatient_procedure_services_data(@provider_outpatient_procedures)}
+.row-fluid
+  .span4
+    %h5 Charges by State
+    .muted
+      %p
+        %strong High:
+        = number_to_currency(@high_charge_state_outpatient_procedure.average_estimated_submitted_charges, :precision => 0)
+        %br
+        = link_to @high_charge_state_outpatient_procedure.state_name, state_outpatient_procedure_path(@high_charge_state_outpatient_procedure)
+      %p
+        %strong Low:
+        = number_to_currency(@low_charge_state_outpatient_procedure.average_estimated_submitted_charges, :precision => 0)
+        %br
+        = link_to @low_charge_state_outpatient_procedure.state_name, state_outpatient_procedure_path(@low_charge_state_outpatient_procedure)
+    = content_tag :div, "", id: "national_state_outpatient_procedure_submitted_charges_graph", data: {procedures: national_state_outpatient_procedure_submitted_charges_data(@state_outpatient_procedures)}
+
+  .span4
+    %h5 Payments by State
+    .muted
+      %p
+        %strong High:
+        = number_to_currency(@high_payment_state_outpatient_procedure.average_total_payments, :precision => 0)
+        %br
+        = link_to @high_payment_state_outpatient_procedure.state_name, state_outpatient_procedure_path(@high_payment_state_outpatient_procedure)
+      %p
+        %strong Low:
+        = number_to_currency(@low_payment_state_outpatient_procedure.average_total_payments, :precision => 0)
+        %br
+        = link_to @low_payment_state_outpatient_procedure.state_name, state_outpatient_procedure_path(@low_payment_state_outpatient_procedure)
+    = content_tag :div, "", id: "national_state_outpatient_procedure_total_payments_graph", data: {procedures: national_state_outpatient_procedure_total_payments_data(@state_outpatient_procedures)}
+
+
+  .span4
+    %h5 Services by State
+    .muted
+      %p
+        %strong High:
+        = @high_services_state_outpatient_procedure.outpatient_services
+        %br
+        = link_to @high_services_state_outpatient_procedure.state_name, state_outpatient_procedure_path(@high_services_state_outpatient_procedure)
+      %p
+        %strong Low:
+        = @low_services_state_outpatient_procedure.outpatient_services
+        %br
+        = link_to @low_services_state_outpatient_procedure.state_name, state_outpatient_procedure_path(@low_services_state_outpatient_procedure)
+      = content_tag :div, "", id: "national_state_outpatient_procedure_services_graph", data: {procedures: national_state_outpatient_procedure_services_data(@state_outpatient_procedures)}
+

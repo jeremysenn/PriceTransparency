@@ -1,0 +1,13 @@
+one:
+  apc: MyString
+  provider_state: MyString
+  outpatient_services: MyString
+  average_estimated_submitted_charges: MyString
+  average_total_payments: MyString
+
+two:
+  apc: MyString
+  provider_state: MyString
+  outpatient_services: MyString
+  average_estimated_submitted_charges: MyString
+  average_total_payments: MyString

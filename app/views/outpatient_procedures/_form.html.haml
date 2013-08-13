@@ -1,0 +1,8 @@
+= simple_form_for @outpatient_procedure, :html => { :class => 'form-horizontal' } do |f|
+  = f.input :apc
+  = f.input :outpatient_services
+  = f.input :average_estimated_submitted_charges
+  = f.input :average_total_payments
+  .form-actions
+    = f.button :submit, :class => 'btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), outpatient_procedures_path, :class => 'btn'

@@ -1,0 +1,178 @@
+- if params[:q].blank?
+  - if false
+    %h2.text-error.pagination-centered
+      %i.icon-ok-sign
+      Procedure Price Check
+  %br
+  .container
+    .row
+      .pagination-centered
+        = form_tag root_path, :method => :get do
+          %p= text_field_tag :q, nil, :style => 'height:34px; font-size:large;', :placeholder => "Search procedures, hospitals, states, regions, ...", :id => "appendedInputButton", :class => 'span6', :value => params[:q]
+          .input-prepend
+            = select_tag :radius, options_for_select([['Within 10 Miles', 10], ['Within 50 Miles', 50], ['Within 100 Miles', 100], ['Within 500 Miles', 500]], params[:radius]), :include_blank => false, :class => "selectpicker show-tick show-menu-arrow span2"
+            = text_field_tag :zip, nil, :placeholder => "Zipcode (optional)", :class => 'span2', :value => params[:zip]
+          %p
+            = button_tag(type: 'submit', class: "btn btn-large btn-success") do
+              Search
+              %i.icon-search
+  %hr
+  .row
+    .span6
+      .pagination-centered
+        %a{:href => inpatient_procedures_path, :class => 'btn btn-large btn-danger'}
+          %i.icon-medkit
+          Inpatient Procedures
+          %i.icon-play
+    .span6
+      .pagination-centered
+        %a{:href => outpatient_procedures_path, :class => 'btn btn-large btn-primary'}
+          %i.icon-medkit
+          Outpatient Procedures
+          %i.icon-play
+    - if false
+      .offset3.span6
+        .muted
+          = "Select a state below, or "
+          = link_to 'browse procedures', '#browse'
+        %div{:id => 'vmap', :style => "width: 600px; height: 400px;"}
+- else
+  %br
+  .container-narrow
+    .pagination-centered
+      = form_tag root_path(:filter => 'all'), :class => "form-inline", :method => :get do
+        .input-prepend
+          = select_tag :filter, options_for_select([ "All", "Procedures", "Hospitals" ], params[:filter]), :include_blank => false, :class => "selectpicker submit_selectpicker show-tick show-menu-arrow span2"
+          = text_field_tag :q, nil, :style => 'height:20px; font-size:large;', :id => "prependedInput", :class => 'span5', :value => params[:q]
+        = button_tag(:type => 'submit', :class => 'btn btn-medium btn-success') do
+          %i.icon-search
+        %br
+        %br
+        .input-prepend
+          = select_tag :radius, options_for_select([['Within 10 Miles', 10], ['Within 50 Miles', 50], ['Within 100 Miles', 100], ['Within 500 Miles', 500]], params[:radius]), :include_blank => false, :class => "selectpicker show-tick show-menu-arrow span2"
+          = text_field_tag :zip, nil, :style => 'height:20px; font-size:large;', :placeholder => "Zip (optional)", :class => 'span2', :value => params[:zip]
+        
+    .tabbable{:style => 'display:none;'}
+      %ul.nav.nav-pills
+        %li.active{:class => (params[:filter] == "All" or params[:filter].blank?) ? "active" : ""}
+          %a{:href => root_path(:q => params[:q], :filter => 'All')}
+            %button.btn
+              All
+        %li{:class => params[:filter] == "Procedures" ? "active" : ""}
+          %a{:href => root_path(:q => params[:q], :filter => 'Procedures')}
+            %button.btn
+              %i.icon-medkit
+              Procedures
+        %li
+          %a{:href => "#providers", :data => {:toggle => "tab"}}
+            %button.btn
+              %i.icon-hospital
+              Hospitals
+    %hr{:style => "border: 1px solid #B7410E; margin-top:0px; margin-bottom:0px;"}
+    %p.muted= "#{@search.total} results found" unless @search.results.blank?
+    - if false
+      .tab-content{}
+        .tab-pane.active{:id => "all"}
+    - unless @search.results.blank?
+      %table.table.table-striped{"data-provides" => "rowlink"}
+        %tbody
+          - @search.results.each do |result|
+            %tr
+              - if result.class.name == 'OutpatientProcedure'
+                %td{:style => 'display:none;'}= link_to "Show", outpatient_procedure_path(result)
+                %td
+                  %i.icon-medkit
+                  = result.apc
+                %td
+                  = "National Summary"
+              - if result.class.name == 'StateOutpatientProcedure'
+                %td{:style => 'display:none;'}= link_to "Show", state_outpatient_procedure_path(result)
+                %td
+                  %i.icon-medkit
+                  = result.apc
+                %td
+                  = "State of #{result.state_name}"
+              - if result.class.name == 'ProviderOutpatientProcedure'
+                %td{:style => 'display:none;'}= link_to "Show", provider_outpatient_procedure_path(result)
+                %td
+                  %i.icon-medkit
+                  = result.apc
+                %td
+                  = result.provider_name
+                  = result.pretty_address
+              - if result.class.name == 'HealthProvider'
+                %td{:style => 'display:none;'}= link_to "Show", health_provider_path(result)
+                %td
+                  %i.icon-hospital
+                  = result.name
+                %td
+                  = result.pretty_address
+      = paginate @search.results
+    - else
+      Nothing found
+      - if false
+        .tab-pane{:id => "procedures"}
+          - unless @state_outpatient_procedure_search.results.blank?
+            %table.table.table-striped{"data-provides" => "rowlink"}
+              %tbody
+                - @state_outpatient_procedure_search.results.each do |result|
+                  %tr
+                    %td{:style => 'display:none;'}= link_to "Show", state_outpatient_procedure_path(result)
+                    %td
+                      %i.icon-medkit
+                      = result.apc
+          - else
+            No Procedures found
+          - if false
+            - @procedure_search.each_hit_with_result do |hit, result|
+              %p
+                - hit.highlights(:apc).each do |highlight|
+                  - phrase = h highlight.format { |word| "***START***#{word}***END***" }
+                  - phrase.gsub!('***START***', '<b>')
+                  - phrase.gsub!('***END***', '</b>')
+                  = link_to raw(phrase), outpatient_procedure_path(result)
+        .tab-pane{:id => "providers"}
+          - unless @health_provider_search.results.blank?
+            %table.table.table-striped{"data-provides" => "rowlink"}
+              %tbody
+                - @health_provider_search.results.each do |result|
+                  %tr
+                    %td{:style => 'display:none;'}= link_to "Show", health_provider_path(result)
+                    %td
+                      %i.icon-hospital
+                      = result.name
+          - else
+            No Health Providers found
+
+:javascript
+  $('.selectpicker').selectpicker({
+    style: 'btn-warning'
+  });
+
+  $(function() {
+    $('.submit_selectpicker').change(function() {
+        this.form.submit();
+    });
+  });
+
+  jQuery('#vmap').vectorMap({
+    map: 'usa_en',
+    backgroundColor: null,
+    borderColor: '#B7410E',
+    borderWidth: 2,
+    color: '#ffffff',
+    hoverColor: '#999999',
+    selectedColor: '#666666',
+    enableZoom: false,
+    showTooltip: true,
+    selectedRegion: null,
+    onRegionClick: function(element, code, region)
+      {
+        window.location = "?q=" + region;
+        //var message = 'You clicked "'
+        //    + region
+        //    + '" which has the code: '
+        //    + code.toUpperCase();
+        //alert(message);
+      }
+  });

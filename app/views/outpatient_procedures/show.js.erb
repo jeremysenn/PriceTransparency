@@ -1,0 +1,107 @@
+$('#hospitals').html('<%= escape_javascript(render("providers")) %>');
+$('#hospital_and_state_graphs').html('<%= escape_javascript(render("graphs")) %>');
+$('#sort_options').html('<%= escape_javascript(render("sort_options")) %>');
+
+var graph1;
+var graph2;
+var graph3;
+var graph4;
+var graph5;
+var graph6;
+
+if ($('#national_outpatient_procedure_submitted_charges_graph').length) {
+  graph1 = Morris.Bar({
+    element: "national_outpatient_procedure_submitted_charges_graph",
+    data: $('#national_outpatient_procedure_submitted_charges_graph').data('procedures'),
+    xkey: 'provider_name',
+    ykeys: ['charges'],
+    labels: ['Avg. Submitted Charge'],
+    preUnits: '$'
+  });
+}
+
+if ($('#national_outpatient_procedure_total_payments_graph').length) {
+  graph2=Morris.Bar({
+    element: "national_outpatient_procedure_total_payments_graph",
+    data: $('#national_outpatient_procedure_total_payments_graph').data('procedures'),
+    xkey: 'provider_name',
+    ykeys: ['payments'],
+    labels: ['Avg. Payment Received'],
+    preUnits: '$'
+  });
+}
+
+if ($('#national_state_outpatient_procedure_submitted_charges_graph').length) {
+  graph3=Morris.Bar({
+    element: "national_state_outpatient_procedure_submitted_charges_graph",
+    data: $('#national_state_outpatient_procedure_submitted_charges_graph').data('procedures'),
+    xkey: 'state',
+    ykeys: ['charges'],
+    labels: ['Avg. Submitted Charge'],
+    preUnits: '$'
+  });
+}
+
+if ($('#national_state_outpatient_procedure_total_payments_graph').length) {
+  graph4=Morris.Bar({
+    element: "national_state_outpatient_procedure_total_payments_graph",
+    data: $('#national_state_outpatient_procedure_total_payments_graph').data('procedures'),
+    xkey: 'state',
+    ykeys: ['payments'],
+    labels: ['Avg. Payment Received'],
+    preUnits: '$'
+  });
+}
+
+if ($('#national_provider_outpatient_procedure_services_graph').length) {
+  graph5=Morris.Bar({
+    element: "national_provider_outpatient_procedure_services_graph",
+    data: $('#national_provider_outpatient_procedure_services_graph').data('procedures'),
+    xkey: 'provider',
+    ykeys: ['services'],
+    labels: ['Services Performed']
+  });
+}
+
+if ($('#national_state_outpatient_procedure_services_graph').length) {
+  graph6=Morris.Bar({
+    element: "national_state_outpatient_procedure_services_graph",
+    data: $('#national_state_outpatient_procedure_services_graph').data('procedures'),
+    xkey: 'state',
+    ykeys: ['services'],
+    labels: ['Services Performed']
+  });
+}
+
+
+
+update_national_outpatient_procedure_submitted_charges_graph();
+update_national_outpatient_procedure_total_payments_graph();
+update_national_state_outpatient_procedure_submitted_charges_graph();
+update_national_state_outpatient_procedure_total_payments_graph();
+update_national_provider_outpatient_procedure_services_graph();
+update_national_state_outpatient_procedure_services_graph();
+
+function update_national_outpatient_procedure_submitted_charges_graph(){
+  graph1.setData($('#national_outpatient_procedure_submitted_charges_graph').data('procedures'));
+};
+
+function update_national_outpatient_procedure_total_payments_graph(){
+  graph2.setData($('#national_outpatient_procedure_total_payments_graph').data('procedures'));
+};
+
+function update_national_state_outpatient_procedure_submitted_charges_graph(){
+  graph3.setData($('#national_state_outpatient_procedure_submitted_charges_graph').data('procedures'));
+};
+
+function update_national_state_outpatient_procedure_total_payments_graph(){
+  graph4.setData($('#national_state_outpatient_procedure_total_payments_graph').data('procedures'));
+};
+
+function update_national_provider_outpatient_procedure_services_graph(){
+  graph5.setData($('#national_provider_outpatient_procedure_services_graph').data('procedures'));
+};
+
+function update_national_state_outpatient_procedure_services_graph(){
+  graph6.setData($('#national_state_outpatient_procedure_services_graph').data('procedures'));
+};

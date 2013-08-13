@@ -1,0 +1,66 @@
+- model_class = ProviderOutpatientProcedure
+.row-fluid
+  .span12
+    %h2
+      %a{:href => outpatient_procedure_path(@outpatient_procedure)}
+        %i.icon-medkit
+        = "#{@provider_outpatient_procedure.apc}"
+    %h4
+      %a{:href => health_provider_path(@health_provider)}
+        %i.icon-hospital
+        = @provider_outpatient_procedure.provider_name
+      |
+      %a{:href => state_outpatient_procedure_path(@state_outpatient_procedure)}
+        = @health_provider.state_name
+    .muted.pull-right
+      %strong= " Year #{@health_provider.year}"
+.row-fluid
+  .span12
+    .muted
+      %table.table.table-striped
+        %tr
+          %td= "Hospital Average Submitted Charges: #{number_to_currency(@provider_outpatient_procedure.average_estimated_submitted_charges)}"
+          %td= "Hospital Average Total Payments: #{number_to_currency(@provider_outpatient_procedure.average_total_payments)}"
+          %td= "Hospital Services Performed: #{@provider_outpatient_procedure.outpatient_services}"
+        %tr
+          %td= "State Average Submitted Charges: #{number_to_currency(@state_outpatient_procedure.average_estimated_submitted_charges)}"
+          %td= "State Average Total Payments: #{number_to_currency(@state_outpatient_procedure.average_total_payments)}"
+          %td= "State Services Performed: #{@state_outpatient_procedure.outpatient_services}"
+        %tr
+          %td= "National Average Submitted Charges: #{number_to_currency(@outpatient_procedure.average_estimated_submitted_charges)}"
+          %td= "National Average Total Payments: #{number_to_currency(@outpatient_procedure.average_total_payments)}"
+          %td= "National Services Performed: #{@outpatient_procedure.outpatient_services}"
+    .tabbable{}
+      .btn-group
+        %ul.nav.nav-pills
+          - if false
+            %li
+              %a{:href => "#procedures", :data => {:toggle => "tab"}}
+                %button.btn
+                  %i.icon-medkit
+                  = "PROCEDURES"
+          %li
+            %a{:href => "#provider_outpatient_procedures_graphs", :data => {:toggle => "tab"}}
+              %button.btn
+                %i.icon-bar-chart
+                = "GRAPHS"
+          %li
+            %a{:href => "#location", :data => {:toggle => "tab"}}
+              %button.btn
+                %i.icon-map-marker
+                = "LOCATION"
+      %hr{:style => "border: 1px solid #B7410E; margin-top:0px;"}
+    .tab-content{}
+      .tab-pane.active{:id => "provider_outpatient_procedures_graphs"}
+        = render :partial => 'graphs'
+      .tab-pane{:id => "location"}
+        = render :partial => 'location'
+      - if false
+        .tab-pane{:id => "procedures"}
+          = link_to @provider_outpatient_procedure.apc, outpatient_procedure_path(@outpatient_procedure)
+
+- if false
+  .form-actions
+    = link_to t('.back', :default => t("helpers.links.back")), provider_outpatient_procedures_path, :class => 'btn'
+    = link_to t('.edit', :default => t("helpers.links.edit")), edit_provider_outpatient_procedure_path(@provider_outpatient_procedure), :class => 'btn'
+    = link_to t('.destroy', :default => t("helpers.links.destroy")), provider_outpatient_procedure_path(@provider_outpatient_procedure), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'

@@ -1,0 +1,40 @@
+- model_class = HealthProvider
+.row-fluid
+  .span12
+    %h1
+      %i.icon-hospital
+      Hospitals
+    %h4
+      .muted.pull-right
+        Year 2011
+= paginate @health_providers
+%table.table.table-striped{"data-provides" => "rowlink"}
+  %thead
+    %tr
+      %th{:style => 'display:none;'}= "Action"
+      %th= 'ID'
+      %th= model_class.human_attribute_name(:name)
+      %th= model_class.human_attribute_name(:address)
+      %th= model_class.human_attribute_name(:city)
+      %th= model_class.human_attribute_name(:state)
+      %th= model_class.human_attribute_name(:zipcode)
+      %th= model_class.human_attribute_name(:hospital_referral_region_description)
+  %tbody
+    - @health_providers.each do |health_provider|
+      %tr
+        %td{:style => 'display:none;'}= link_to health_provider.id, health_provider_path(health_provider)
+        %td= health_provider.provider_id
+        %td= health_provider.name
+        %td= health_provider.address
+        %td= health_provider.city
+        %td= health_provider.state
+        %td= health_provider.zipcode
+        %td= health_provider.hospital_referral_region_description
+
+- if false
+  = link_to t('.new', :default => t("helpers.links.new")), new_health_provider_path, :class => 'btn btn-primary'
+  %hr
+  %h2 Import Health Providers
+  = form_tag import_health_providers_path, multipart: true do
+    = file_field_tag :file
+    = submit_tag "Import"

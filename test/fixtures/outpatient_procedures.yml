@@ -1,0 +1,11 @@
+one:
+  apc: MyString
+  outpatient_services: 1
+  average_estimated_submitted_charges: 9.99
+  average_total_payments: 9.99
+
+two:
+  apc: MyString
+  outpatient_services: 1
+  average_estimated_submitted_charges: 9.99
+  average_total_payments: 9.99

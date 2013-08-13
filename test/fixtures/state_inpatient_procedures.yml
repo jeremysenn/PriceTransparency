@@ -1,0 +1,15 @@
+one:
+  drg: MyString
+  provider_state: MyString
+  total_discharges: 1
+  average_covered_charges: 9.99
+  average_total_payments: 9.99
+  year: 1
+
+two:
+  drg: MyString
+  provider_state: MyString
+  total_discharges: 1
+  average_covered_charges: 9.99
+  average_total_payments: 9.99
+  year: 1
