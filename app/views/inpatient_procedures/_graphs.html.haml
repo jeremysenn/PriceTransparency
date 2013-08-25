@@ -9,7 +9,7 @@
           %th= sortable 'average_total_payments', 'Avg. Total Payments', params[:zip], params[:radius]
           %th= sortable 'total_discharges', 'Total Discharges', params[:zip], params[:radius]
     %hr{:style => "border: 1px solid lightgrey; margin-top:0px;"}
-.row-fluid
+.row-fluid.well
   .span4
     %h5 
       Charges by Hospital
@@ -36,7 +36,7 @@
       %a{:class => 'btn btn-mini popup', :href => nil, 'data-toggle' => "popover", 'data-placement' => "top", 'data-content' => "#{@low_services_provider_inpatient_procedure.total_discharges}", :title => "#{link_to truncate(@low_services_provider_inpatient_procedure.provider_name, :length => 30), provider_inpatient_procedure_path(@low_services_provider_inpatient_procedure)}"}
         = "Low"
     = content_tag :div, "", id: "national_provider_inpatient_procedure_services_graph", data: {procedures: national_provider_inpatient_procedure_services_data(@provider_inpatient_procedures)}
-.row-fluid
+.row-fluid.well
   .span4
     %h5
       Charges by State

@@ -10,7 +10,7 @@
           %th= sortable 'outpatient_services', 'Services Performed', params[:zip], params[:radius]
     - if true
       %hr{:style => "border: 1px solid lightgrey; margin-top:0px;"}
-.row-fluid
+.row-fluid.well
   .span4
     %h5 
       Charges by Hospital
@@ -37,7 +37,7 @@
       %a{:class => 'btn btn-mini popup', :href => nil, 'data-toggle' => "popover", 'data-placement' => "top", 'data-content' => "#{@low_services_provider_outpatient_procedure.outpatient_services}", :title => "#{link_to truncate(@low_services_provider_outpatient_procedure.provider_name, :length => 30), provider_outpatient_procedure_path(@low_services_provider_outpatient_procedure)}"}
         = "Low"
     = content_tag :div, "", id: "national_provider_outpatient_procedure_services_graph", data: {procedures: national_provider_outpatient_procedure_services_data(@provider_outpatient_procedures)}
-.row-fluid
+.row-fluid.well
   .span4
     %h5 
       Charges by State

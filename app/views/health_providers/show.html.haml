@@ -33,12 +33,12 @@
       .tab-pane.active{:id => "graphs"}
         %div{:id => "inpatient_graphs"}
           - unless @provider_inpatient_procedures.blank?
-            = render :partial => 'graphs'
+            = render :partial => 'inpatient_graphs'
           - else
             No Inpatient Procedure Graphs
         %div{:id => "outpatient_graphs"}
           - unless @provider_outpatient_procedures.blank?
-            = render :partial => 'graphs'
+            = render :partial => 'outpatient_graphs'
           - else
             No Outpatient Procedure Graphs
       .tab-pane{:id => "location"}

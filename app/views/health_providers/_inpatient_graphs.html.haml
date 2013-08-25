@@ -1,0 +1,17 @@
+
+.row-fluid.well
+  .span6
+    %h5= "Inpatient Procedures Average Covered Charges"
+    = content_tag :div, "", id: "provider_inpatient_procedure_graph", data: {procedures: procedure_inpatient_data(@provider_inpatient_procedures)}
+    =# content_tag :div, "", id: "provider_inpatient_procedure_graph", data: {procedures: @provider_inpatient_procedures}
+  .span6
+    %h5= "Inpatient Procedures Average Total Payments"
+    = content_tag :div, "", id: "provider_inpatient_procedure_payment_graph", data: {procedures: procedure_inpatient_payment_data(@provider_inpatient_procedures)}
+
+.row-fluid.well
+  .span6
+    %h5 Inpatient Procedures Total Discharges
+    = content_tag :div, "", id: "provider_inpatient_services_graph", data: {procedures: procedure_inpatient_services_data(@provider_inpatient_procedures)}
+  .span6
+    %h5 Inpatient Procedures Average Covered Charges
+    = content_tag :div, "", id: "provider_inpatient_charges_donut_graph", data: {procedures: procedure_inpatient_charges_donut_data(@provider_inpatient_procedures)}

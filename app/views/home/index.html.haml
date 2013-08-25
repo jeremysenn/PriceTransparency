@@ -3,15 +3,28 @@
   .pagination-centered
     %p
       %a{:href => inpatient_procedures_path, :class => 'btn btn-large btn-warning'}
-        %i.icon-medkit
         &nbsp;
+        %i.icon-medkit
         Inpatient Procedures
-        %i.icon-play
     %p
       %a{:href => outpatient_procedures_path, :class => 'btn btn-large btn-success'}
         %i.icon-medkit
         Outpatient Procedures
-        %i.icon-play
+    %p
+      %a{:href => health_providers_path, :class => 'btn btn-large btn-primary'}
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        %i.icon-hospital
+        Hospitals
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        &nbsp;
 
   - if false
     %h2.text-error.pagination-centered
