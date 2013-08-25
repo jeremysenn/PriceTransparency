@@ -31,18 +31,29 @@
       %hr{:style => "border: 1px solid #B7410E; margin-top:0px;"}
     .tab-content{}
       .tab-pane.active{:id => "graphs"}
-        = render :partial => 'graphs'
+        %div{:id => "inpatient_graphs"}
+          - unless @provider_inpatient_procedures.blank?
+            = render :partial => 'graphs'
+          - else
+            No Inpatient Procedure Graphs
+        %div{:id => "outpatient_graphs"}
+          - unless @provider_outpatient_procedures.blank?
+            = render :partial => 'graphs'
+          - else
+            No Outpatient Procedure Graphs
       .tab-pane{:id => "location"}
         = render :partial => 'location'
       .tab-pane{:id => "procedures"}
-        .btn-group.pull-right{"data-toggle" => "buttons-radio"}
-          %button.btn.active
-            %a{:href => '#'}
-              Outpatient
-          %button.btn
-            %a{:href => '#'}
-              Inpatient
-        %br
-        %br
-        = render :partial => 'outpatient_procedures'
-        = render :partial => 'inpatient_procedures'
+        %div{ :class => "btn-group", "data-toggle" => "buttons-radio"}
+          = link_to_function 'Inpatient', "$('#outpatient').hide(); $('#inpatient').show(); ", :class => 'btn btn-success active'
+          = link_to_function 'Outpatient', "$('#outpatient').show(); $('#inpatient').hide(); ", :class => 'btn btn-success'
+        %div{:id => "inpatient"}
+          - unless @provider_inpatient_procedures.blank?
+            = render :partial => 'inpatient_procedures'
+          - else
+            None
+        %div{:id => "outpatient", :style => 'display:none'}
+          - unless @provider_outpatient_procedures.blank?
+            = render :partial => 'outpatient_procedures'
+          - else
+            None

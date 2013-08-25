@@ -13,11 +13,11 @@
   .span12
     .muted
       %table.table.table-striped
-        %tr
+        %tr.info
           %td= "State Average Submitted Charges: #{number_to_currency(@state_outpatient_procedure.average_estimated_submitted_charges)}"
           %td= "State Average Total Payments: #{number_to_currency(@state_outpatient_procedure.average_total_payments)}"
           %td= "State Services Performed: #{@state_outpatient_procedure.outpatient_services}"
-        %tr
+        %tr.warning
           %td= "National Average Submitted Charges: #{number_to_currency(@outpatient_procedure.average_estimated_submitted_charges)}"
           %td= "National Average Total Payments: #{number_to_currency(@outpatient_procedure.average_total_payments)}"
           %td= "National Services Performed: #{@outpatient_procedure.outpatient_services}"

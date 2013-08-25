@@ -18,6 +18,13 @@ class ProviderInpatientProcedure < ActiveRecord::Base
     HealthProvider.find_by_provider_id(provider_id)
   end
 
+#  def create_health_provider
+#    health_provider = HealthProvider.find_by_provider_id(provider_id)
+#    if health_provider.blank?
+#      HealthProvider.create(:provider_id => provider_id, :name => provider_name, :address => provider_street_address, :city => provider_city, :state => provider_state, :zipcode => provider_zipcode, :hospital_referral_region_description => hospital_referral_region_description, :year => 2011)
+#    end
+#  end
+
   def latitude
     health_provider.latitude
   end

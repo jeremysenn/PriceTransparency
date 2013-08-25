@@ -51,12 +51,13 @@
         Sign up
         %i.icon-arrow-right
   - else
-    - unless current_page? root_path
-      = form_tag(root_path, :method => "get", :class => "navbar-search form-search", :style => "margin-bottom: 5px;") do
-        .input-append
-          = text_field_tag :q, nil, :placeholder => "Search procedures, hospitals, states, regions, ...", :id => "appendedInputButton", :class => 'span3 search-query'
-          = button_tag(:type => 'submit', :class => 'btn') do
-            %i.icon-search
+    - if false
+      - unless current_page? root_path
+        = form_tag(root_path, :method => "get", :class => "navbar-search form-search", :style => "margin-bottom: 5px;") do
+          .input-append
+            = text_field_tag :q, nil, :placeholder => "Search procedures, hospitals, states, regions, ...", :id => "appendedInputButton", :class => 'span3 search-query'
+            = button_tag(:type => 'submit', :class => 'btn') do
+              %i.icon-search
 
     %ul.nav.pull-right
       %li.divider-vertical

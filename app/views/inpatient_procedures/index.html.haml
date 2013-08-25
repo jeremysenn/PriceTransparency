@@ -1,4 +1,9 @@
 - model_class = InpatientProcedure
+#cover
+  %div{:class => "alert alert-information"}
+    .pagination-centered
+      = content_tag :div, "Loading data ..."
+
 .row-fluid
   .span12
     %h2
@@ -19,7 +24,7 @@
   %tbody
     - @inpatient_procedures.each do |inpatient_procedure|
       %tr
-        %td{:style => 'display:none;'}= link_to "Show", inpatient_procedure_path(inpatient_procedure)
+        %td{:style => 'display:none;'}= link_to "Show", inpatient_procedure_path(inpatient_procedure), :class => 'loading'
         %td= inpatient_procedure.drg
         %td= number_to_currency(inpatient_procedure.average_covered_charges)
         %td= number_to_currency(inpatient_procedure.average_total_payments)
@@ -33,3 +38,8 @@
     = submit_tag "Import"
 
   = link_to t('.new', :default => t("helpers.links.new")), new_inpatient_procedure_path, :class => 'btn btn-primary'
+
+:javascript
+  $('.loading').on('click', function(e) {
+     $('#cover').show();
+    });

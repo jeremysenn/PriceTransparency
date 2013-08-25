@@ -12,7 +12,8 @@ jQuery ->
       ykeys: ['charges']
       labels: ['Avg. Covered Charge']
       preUnits: '$'
-      hideHover: 'auto'
+      #hideHover: 'auto'
+      axes: false
 
   #update_national_inpatient_procedure_submitted_charges_graph = ->
   #  alert "hey there"
@@ -26,7 +27,8 @@ jQuery ->
       ykeys: ['payments']
       labels: ['Avg. Payment Received']
       preUnits: '$'
-      hideHover: 'auto'
+      #hideHover: 'auto'
+      axes: false
 
   if $('#national_state_inpatient_procedure_submitted_charges_graph').length
     Morris.Bar
@@ -36,7 +38,8 @@ jQuery ->
       ykeys: ['charges']
       labels: ['Avg. Covered Charge']
       preUnits: '$'
-      hideHover: 'auto'
+      #hideHover: 'auto'
+      axes: false
 
   if $('#national_state_inpatient_procedure_total_payments_graph').length
     Morris.Bar
@@ -46,7 +49,8 @@ jQuery ->
       ykeys: ['payments']
       labels: ['Avg. Payment Received']
       preUnits: '$'
-      hideHover: 'auto'
+      #hideHover: 'auto'
+      axes: false
 
   if $('#national_provider_inpatient_procedure_services_graph').length
     Morris.Bar
@@ -55,7 +59,8 @@ jQuery ->
       xkey: 'provider'
       ykeys: ['services']
       labels: ['Total Discharges']
-      hideHover: 'auto'
+      #hideHover: 'auto'
+      axes: false
 
   if $('#national_state_inpatient_procedure_services_graph').length
     Morris.Bar
@@ -64,17 +69,9 @@ jQuery ->
       xkey: 'state'
       ykeys: ['services']
       labels: ['Total Discharges']
-      hideHover: 'auto'
+      #hideHover: 'auto'
+      axes: false
 
-  ### KEEP CURRENT TAB ACTIVE AFTER PAGE RELOAD ###
-  $("a[data-toggle=\"tab\"]").on "shown", (e) ->
-    #save the latest tab using a cookie:
-    $.cookie "last_tab", $(e.target).attr("href")
-
-  #activate latest tab, if it exists:
-  lastTab = $.cookie("last_tab")
-  if lastTab
-    $("ul.nav-tabs").children().removeClass "active"
-    $("a[href=" + lastTab + "]").parents("li:first").addClass "active"
-    $("div.tab-content").children().removeClass "active"
-    $(lastTab).addClass "active"
+  ### FOR SHOWING LOADING SPINNER WHILE PAGE LOADS ###
+  $(window).load ->
+    $("#cover").fadeOut 100

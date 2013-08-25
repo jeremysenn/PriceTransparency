@@ -12,7 +12,10 @@ jQuery ->
       ykeys: ['charges']
       labels: ['Avg. Submitted Charge']
       preUnits: '$'
-      hideHover: 'auto'
+      #hideHover: 'auto'
+      axes: false
+      #xLabelAngle: 60
+      #xLabelMargin: 0
 
   #update_national_outpatient_procedure_submitted_charges_graph = ->
   #  alert "hey there"
@@ -26,7 +29,8 @@ jQuery ->
       ykeys: ['payments']
       labels: ['Avg. Payment Received']
       preUnits: '$'
-      hideHover: 'auto'
+      #hideHover: 'auto'
+      axes: false
 
   if $('#national_state_outpatient_procedure_submitted_charges_graph').length
     Morris.Bar
@@ -36,7 +40,8 @@ jQuery ->
       ykeys: ['charges']
       labels: ['Avg. Submitted Charge']
       preUnits: '$'
-      hideHover: 'auto'
+      #hideHover: 'auto'
+      axes: false
 
   if $('#national_state_outpatient_procedure_total_payments_graph').length
     Morris.Bar
@@ -46,7 +51,8 @@ jQuery ->
       ykeys: ['payments']
       labels: ['Avg. Payment Received']
       preUnits: '$'
-      hideHover: 'auto'
+      #hideHover: 'auto'
+      axes: false
 
   if $('#national_provider_outpatient_procedure_services_graph').length
     Morris.Bar
@@ -55,7 +61,8 @@ jQuery ->
       xkey: 'provider'
       ykeys: ['services']
       labels: ['Services Performed']
-      hideHover: 'auto'
+      #hideHover: 'auto'
+      axes: false
 
   if $('#national_state_outpatient_procedure_services_graph').length
     Morris.Bar
@@ -64,7 +71,8 @@ jQuery ->
       xkey: 'state'
       ykeys: ['services']
       labels: ['Services Performed']
-      hideHover: 'auto'
+      #hideHover: 'auto'
+      axes: false
 
   ### KEEP CURRENT TAB ACTIVE AFTER PAGE RELOAD ###
   $("a[data-toggle=\"tab\"]").on "shown", (e) ->
@@ -79,11 +87,6 @@ jQuery ->
     $("div.tab-content").children().removeClass "active"
     $(lastTab).addClass "active"
 
-  ### AJAX PAGE SORTING ###
-  #$(document).on "click", "#sort_options a, #hospitals th a, #hospitals .pagination a", ->
-  #  $.getScript @href
-  #  false
-
   ### ENDLESS PAGE ###
   #$(window).scroll ->
   #  $(window).scroll ->
@@ -92,5 +95,3 @@ jQuery ->
 
   #$("a[data-toggle=\"tab\"]").on "shown", (e) ->
   #  if $(e.target).attr("href") is "#graphs"
-
- 

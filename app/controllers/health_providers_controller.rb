@@ -1,5 +1,6 @@
 class HealthProvidersController < ApplicationController
   load_and_authorize_resource
+  helper_method :sort_column, :sort_direction
   
   def index
 #    @health_providers = HealthProvider.all
@@ -8,8 +9,8 @@ class HealthProvidersController < ApplicationController
 
   def show
     @health_provider = HealthProvider.find(params[:id])
-    @provider_outpatient_procedures = ProviderOutpatientProcedure.find_all_by_provider_id(@health_provider.provider_id)
-    @provider_inpatient_procedures = ProviderInpatientProcedure.find_all_by_provider_id(@health_provider.provider_id)
+    @provider_outpatient_procedures = ProviderOutpatientProcedure.find_all_by_provider_id(@health_provider.provider_id, :order => outpatient_procedure_sort_column + ' ' + sort_direction)
+    @provider_inpatient_procedures = ProviderInpatientProcedure.find_all_by_provider_id(@health_provider.provider_id, :order => inpatient_procedure_sort_column + ' ' + sort_direction)
   end
 
   def new
@@ -47,5 +48,23 @@ class HealthProvidersController < ApplicationController
     @health_provider = HealthProvider.find(params[:id])
     @health_provider.destroy
     redirect_to health_providers_url, :notice => "Successfully destroyed health provider."
+  end
+
+  private
+
+  def sort_column
+    ProviderInpatientProcedure.column_names.include?(params[:sort]) ? params[:sort] : "average_total_payments"
+  end
+
+  def inpatient_procedure_sort_column
+    ProviderInpatientProcedure.column_names.include?(params[:sort]) ? params[:sort] : "drg"
+  end
+
+  def outpatient_procedure_sort_column
+    ProviderOutpatientProcedure.column_names.include?(params[:sort]) ? params[:sort] : "apc"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
   end
 end

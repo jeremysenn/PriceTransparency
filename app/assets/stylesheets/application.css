@@ -36,3 +36,19 @@
 .sortable th .desc {
   background-image: url(down_arrow.gif);
 }
+
+#cover {
+/*  background: url("http://www.aveva.com/Images/ajax-loader.gif") no-repeat scroll center center #FFF;*/
+/*  position: absolute;*/
+/*  height: 100%;*/
+/*  width: 100%;*/
+
+  position: fixed;
+  margin-top: 0px;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: 50% 50% no-repeat ;
+}

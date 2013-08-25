@@ -1,22 +1,27 @@
 - model_class = InpatientProcedure
+
+#cover
+  %div{:class => "alert alert-information"}
+    .pagination-centered
+      = content_tag :div, "Loading data ..."
+
 .row-fluid
   .span12
     %h2
       %i.icon-medkit
       = @inpatient_procedure.drg
-    %h4
+    %h5.muted
       = "National"
-      .muted.pull-right
+      .pull-right
         = " Year #{@inpatient_procedure.year}"
-
 .row-fluid
   .span12
     .muted
       %table.table.table-striped
         %tr.error
-          %td= "National Average Covered Charges: #{number_to_currency(@inpatient_procedure.average_covered_charges, :precision => 0)}"
-          %td= "National Average Total Payments: #{number_to_currency(@inpatient_procedure.average_total_payments, :precision => 0)}"
-          %td= "National Total Discharges: #{@inpatient_procedure.total_discharges}"
+          %td= "Average Covered Charges: #{number_to_currency(@inpatient_procedure.average_covered_charges, :precision => 0)}"
+          %td= "Average Total Payments: #{number_to_currency(@inpatient_procedure.average_total_payments, :precision => 0)}"
+          %td= "Total Discharges: #{@inpatient_procedure.total_discharges}"
     .tabbable{}
       .btn-group
         %ul.nav.nav-pills
@@ -73,4 +78,8 @@
 :javascript
   $('.selectpicker').selectpicker({
     style: 'btn-warning'
+  });
+
+  $('.loading').on('click', function(e) {
+   $('#cover').show();
   });

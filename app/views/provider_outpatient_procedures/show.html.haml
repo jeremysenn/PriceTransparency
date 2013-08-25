@@ -18,17 +18,17 @@
   .span12
     .muted
       %table.table.table-striped
-        %tr
-          %td= "Hospital Average Submitted Charges: #{number_to_currency(@provider_outpatient_procedure.average_estimated_submitted_charges)}"
-          %td= "Hospital Average Total Payments: #{number_to_currency(@provider_outpatient_procedure.average_total_payments)}"
+        %tr.info
+          %td= "Hospital Average Submitted Charges: #{number_to_currency(@provider_outpatient_procedure.average_estimated_submitted_charges, :precision => 0)}"
+          %td= "Hospital Average Total Payments: #{number_to_currency(@provider_outpatient_procedure.average_total_payments, :precision => 0)}"
           %td= "Hospital Services Performed: #{@provider_outpatient_procedure.outpatient_services}"
-        %tr
-          %td= "State Average Submitted Charges: #{number_to_currency(@state_outpatient_procedure.average_estimated_submitted_charges)}"
-          %td= "State Average Total Payments: #{number_to_currency(@state_outpatient_procedure.average_total_payments)}"
+        %tr.warning
+          %td= "State Average Submitted Charges: #{number_to_currency(@state_outpatient_procedure.average_estimated_submitted_charges, :precision => 0)}"
+          %td= "State Average Total Payments: #{number_to_currency(@state_outpatient_procedure.average_total_payments, :precision => 0)}"
           %td= "State Services Performed: #{@state_outpatient_procedure.outpatient_services}"
-        %tr
-          %td= "National Average Submitted Charges: #{number_to_currency(@outpatient_procedure.average_estimated_submitted_charges)}"
-          %td= "National Average Total Payments: #{number_to_currency(@outpatient_procedure.average_total_payments)}"
+        %tr.error
+          %td= "National Average Submitted Charges: #{number_to_currency(@outpatient_procedure.average_estimated_submitted_charges, :precision => 0)}"
+          %td= "National Average Total Payments: #{number_to_currency(@outpatient_procedure.average_total_payments, :precision => 0)}"
           %td= "National Services Performed: #{@outpatient_procedure.outpatient_services}"
     .tabbable{}
       .btn-group

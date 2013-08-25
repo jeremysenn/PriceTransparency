@@ -11,93 +11,59 @@
     %hr{:style => "border: 1px solid lightgrey; margin-top:0px;"}
 .row-fluid
   .span4
-    %h5 Charges by Hospital
-    .muted
-      %p
-        %strong High:
-        = number_to_currency(@high_charge_provider_inpatient_procedure.average_covered_charges, :precision => 0)
-        %br
-        = link_to truncate(@high_charge_provider_inpatient_procedure.provider_name, :length => 30), provider_inpatient_procedure_path(@high_charge_provider_inpatient_procedure)
-      %p
-        %strong Low:
-        = number_to_currency(@low_charge_provider_inpatient_procedure.average_covered_charges, :precision => 0)
-        %br
-        = link_to truncate(@low_charge_provider_inpatient_procedure.provider_name, :length => 30), provider_inpatient_procedure_path(@low_charge_provider_inpatient_procedure)
+    %h5 
+      Charges by Hospital
+      %a{:class => 'btn btn-mini popup', :href => nil, 'data-toggle' => "popover", 'data-placement' => "top", 'data-content' => "#{number_to_currency(@high_charge_provider_inpatient_procedure.average_covered_charges, :precision => 0)}", :title => "#{link_to truncate(@high_charge_provider_inpatient_procedure.provider_name, :length => 30), provider_inpatient_procedure_path(@high_charge_provider_inpatient_procedure)}"}
+        = "High"
+      %a{:class => 'btn btn-mini popup', :href => nil, 'data-toggle' => "popover", 'data-placement' => "top", 'data-content' => "#{number_to_currency(@low_charge_provider_inpatient_procedure.average_covered_charges, :precision => 0)}", :title => "#{link_to truncate(@low_charge_provider_inpatient_procedure.provider_name, :length => 30), provider_inpatient_procedure_path(@low_charge_provider_inpatient_procedure)}"}
+        = "Low"
     = content_tag :div, "", id: "national_inpatient_procedure_submitted_charges_graph", data: {procedures: inpatient_procedure_submitted_charges_data(@provider_inpatient_procedures)}
 
   .span4
-    %h5 Payments by Hospital
-    .muted
-      %p
-        %strong High:
-        = number_to_currency(@high_payment_provider_inpatient_procedure.average_total_payments, :precision => 0)
-        %br
-        = link_to truncate(@high_payment_provider_inpatient_procedure.provider_name, :length => 30), provider_inpatient_procedure_path(@high_payment_provider_inpatient_procedure)
-      %p
-        %strong Low:
-        = number_to_currency(@low_payment_provider_inpatient_procedure.average_total_payments, :precision => 0)
-        %br
-        = link_to truncate(@low_payment_provider_inpatient_procedure.provider_name, :length => 30), provider_inpatient_procedure_path(@low_payment_provider_inpatient_procedure)
+    %h5 
+      Payments by Hospital
+      %a{:class => 'btn btn-mini popup', :href => nil, 'data-toggle' => "popover", 'data-placement' => "top", 'data-content' => "#{number_to_currency(@high_payment_provider_inpatient_procedure.average_total_payments, :precision => 0)}", :title => "#{link_to truncate(@high_payment_provider_inpatient_procedure.provider_name, :length => 30), provider_inpatient_procedure_path(@high_payment_provider_inpatient_procedure)}"}
+        = "High"
+      %a{:class => 'btn btn-mini popup', :href => nil, 'data-toggle' => "popover", 'data-placement' => "top", 'data-content' => "#{number_to_currency(@low_payment_provider_inpatient_procedure.average_total_payments, :precision => 0)}", :title => "#{link_to truncate(@low_payment_provider_inpatient_procedure.provider_name, :length => 30), provider_inpatient_procedure_path(@low_payment_provider_inpatient_procedure)}"}
+        = "Low"
     = content_tag :div, "", id: "national_inpatient_procedure_total_payments_graph", data: {procedures: inpatient_procedure_total_payments_data(@provider_inpatient_procedures)}
 
   .span4
-    %h5 Discharges by Hospital
-    .muted
-      %p
-        %strong High:
-        = @high_services_provider_inpatient_procedure.total_discharges
-        %br
-        = link_to truncate(@high_services_provider_inpatient_procedure.provider_name, :length => 30), provider_inpatient_procedure_path(@high_services_provider_inpatient_procedure)
-      %p
-        %strong Low:
-        = @low_services_provider_inpatient_procedure.total_discharges
-        %br
-        = link_to truncate(@low_services_provider_inpatient_procedure.provider_name, :length => 30), provider_inpatient_procedure_path(@low_services_provider_inpatient_procedure)
+    %h5 
+      Discharges by Hospital
+      %a{:class => 'btn btn-mini popup', :href => nil, 'data-toggle' => "popover", 'data-placement' => "top", 'data-content' => "#{@high_services_provider_inpatient_procedure.total_discharges}", :title => "#{link_to truncate(@high_services_provider_inpatient_procedure.provider_name, :length => 30), provider_inpatient_procedure_path(@high_services_provider_inpatient_procedure)}"}
+        = "High"
+      %a{:class => 'btn btn-mini popup', :href => nil, 'data-toggle' => "popover", 'data-placement' => "top", 'data-content' => "#{@low_services_provider_inpatient_procedure.total_discharges}", :title => "#{link_to truncate(@low_services_provider_inpatient_procedure.provider_name, :length => 30), provider_inpatient_procedure_path(@low_services_provider_inpatient_procedure)}"}
+        = "Low"
     = content_tag :div, "", id: "national_provider_inpatient_procedure_services_graph", data: {procedures: national_provider_inpatient_procedure_services_data(@provider_inpatient_procedures)}
 .row-fluid
   .span4
-    %h5 Charges by State
-    .muted
-      %p
-        %strong High:
-        = number_to_currency(@high_charge_state_inpatient_procedure.average_covered_charges, :precision => 0)
-        %br
-        = link_to @high_charge_state_inpatient_procedure.state_name, state_inpatient_procedure_path(@high_charge_state_inpatient_procedure)
-      %p
-        %strong Low:
-        = number_to_currency(@low_charge_state_inpatient_procedure.average_covered_charges, :precision => 0)
-        %br
-        = link_to @low_charge_state_inpatient_procedure.state_name, state_inpatient_procedure_path(@low_charge_state_inpatient_procedure)
+    %h5
+      Charges by State
+      %a{:class => 'btn btn-mini popup', :href => nil, 'data-toggle' => "popover", 'data-placement' => "top", 'data-content' => "#{number_to_currency(@high_charge_state_inpatient_procedure.average_covered_charges, :precision => 0)}", :title => "#{link_to @high_charge_state_inpatient_procedure.state_name, state_inpatient_procedure_path(@high_charge_state_inpatient_procedure)}"}
+        = "High"
+      %a{:class => 'btn btn-mini popup', :href => nil, 'data-toggle' => "popover", 'data-placement' => "top", 'data-content' => "#{number_to_currency(@low_charge_state_inpatient_procedure.average_covered_charges, :precision => 0)}", :title => "#{link_to @low_charge_state_inpatient_procedure.state_name, state_inpatient_procedure_path(@low_charge_state_inpatient_procedure)}"}
+        = "Low"
     = content_tag :div, "", id: "national_state_inpatient_procedure_submitted_charges_graph", data: {procedures: national_state_inpatient_procedure_submitted_charges_data(@state_inpatient_procedures)}
 
   .span4
-    %h5 Payments by State
-    .muted
-      %p
-        %strong High:
-        = number_to_currency(@high_payment_state_inpatient_procedure.average_total_payments, :precision => 0)
-        %br
-        = link_to @high_payment_state_inpatient_procedure.state_name, state_inpatient_procedure_path(@high_payment_state_inpatient_procedure)
-      %p
-        %strong Low:
-        = number_to_currency(@low_payment_state_inpatient_procedure.average_total_payments, :precision => 0)
-        %br
-        = link_to @low_payment_state_inpatient_procedure.state_name, state_inpatient_procedure_path(@low_payment_state_inpatient_procedure)
+    %h5 
+      Payments by State
+      %a{:class => 'btn btn-mini popup', :href => nil, 'data-toggle' => "popover", 'data-placement' => "top", 'data-content' => "#{number_to_currency(@high_payment_state_inpatient_procedure.average_total_payments, :precision => 0)}", :title => "#{link_to @high_payment_state_inpatient_procedure.state_name, state_inpatient_procedure_path(@high_payment_state_inpatient_procedure)}"}
+        = "High"
+      %a{:class => 'btn btn-mini popup', :href => nil, 'data-toggle' => "popover", 'data-placement' => "top", 'data-content' => "#{number_to_currency(@low_payment_state_inpatient_procedure.average_total_payments, :precision => 0)}", :title => "#{link_to @low_payment_state_inpatient_procedure.state_name, state_inpatient_procedure_path(@low_payment_state_inpatient_procedure)}"}
+        = "Low"
     = content_tag :div, "", id: "national_state_inpatient_procedure_total_payments_graph", data: {procedures: national_state_inpatient_procedure_total_payments_data(@state_inpatient_procedures)}
 
 
   .span4
-    %h5 Discharges by State
-    .muted
-      %p
-        %strong High:
-        = @high_services_state_inpatient_procedure.total_discharges
-        %br
-        = link_to @high_services_state_inpatient_procedure.state_name, state_inpatient_procedure_path(@high_services_state_inpatient_procedure)
-      %p
-        %strong Low:
-        = @low_services_state_inpatient_procedure.total_discharges
-        %br
-        = link_to @low_services_state_inpatient_procedure.state_name, state_inpatient_procedure_path(@low_services_state_inpatient_procedure)
+    %h5
+      Discharges by State
+      %a{:class => 'btn btn-mini popup', :href => nil, 'data-toggle' => "popover", 'data-placement' => "top", 'data-content' => "#{@high_services_state_inpatient_procedure.total_discharges}", :title => "#{link_to @high_services_state_inpatient_procedure.state_name, state_inpatient_procedure_path(@high_services_state_inpatient_procedure)}"}
+        = "High"
+      %a{:class => 'btn btn-mini popup', :href => nil, 'data-toggle' => "popover", 'data-placement' => "top", 'data-content' => "#{@low_services_state_inpatient_procedure.total_discharges}", :title => "#{link_to @low_services_state_inpatient_procedure.state_name, state_inpatient_procedure_path(@low_services_state_inpatient_procedure)}"}
+        = "Low"
       = content_tag :div, "", id: "national_state_inpatient_procedure_services_graph", data: {procedures: national_state_inpatient_procedure_services_data(@state_inpatient_procedures)}
 
+%script
+  $('.popup').popover({html: true})

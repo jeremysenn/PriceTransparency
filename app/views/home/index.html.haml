@@ -1,35 +1,49 @@
 - if params[:q].blank?
+
+  .pagination-centered
+    %p
+      %a{:href => inpatient_procedures_path, :class => 'btn btn-large btn-warning'}
+        %i.icon-medkit
+        &nbsp;
+        Inpatient Procedures
+        %i.icon-play
+    %p
+      %a{:href => outpatient_procedures_path, :class => 'btn btn-large btn-success'}
+        %i.icon-medkit
+        Outpatient Procedures
+        %i.icon-play
+
   - if false
     %h2.text-error.pagination-centered
       %i.icon-ok-sign
       Procedure Price Check
-  %br
-  .container
+    %br
+    .container
+      .row
+        .pagination-centered
+          = form_tag root_path, :method => :get do
+            %p= text_field_tag :q, nil, :style => 'height:34px; font-size:large;', :placeholder => "Search procedures, hospitals, states, regions, ...", :id => "appendedInputButton", :class => 'span6', :value => params[:q]
+            .input-prepend
+              = select_tag :radius, options_for_select([['Within 10 Miles', 10], ['Within 50 Miles', 50], ['Within 100 Miles', 100], ['Within 500 Miles', 500]], params[:radius]), :include_blank => false, :class => "selectpicker show-tick show-menu-arrow span2"
+              = text_field_tag :zip, nil, :placeholder => "Zipcode (optional)", :class => 'span2', :value => params[:zip]
+            %p
+              = button_tag(type: 'submit', class: "btn btn-large btn-success") do
+                Search
+                %i.icon-search
+    %hr
     .row
-      .pagination-centered
-        = form_tag root_path, :method => :get do
-          %p= text_field_tag :q, nil, :style => 'height:34px; font-size:large;', :placeholder => "Search procedures, hospitals, states, regions, ...", :id => "appendedInputButton", :class => 'span6', :value => params[:q]
-          .input-prepend
-            = select_tag :radius, options_for_select([['Within 10 Miles', 10], ['Within 50 Miles', 50], ['Within 100 Miles', 100], ['Within 500 Miles', 500]], params[:radius]), :include_blank => false, :class => "selectpicker show-tick show-menu-arrow span2"
-            = text_field_tag :zip, nil, :placeholder => "Zipcode (optional)", :class => 'span2', :value => params[:zip]
-          %p
-            = button_tag(type: 'submit', class: "btn btn-large btn-success") do
-              Search
-              %i.icon-search
-  %hr
-  .row
-    .span6
-      .pagination-centered
-        %a{:href => inpatient_procedures_path, :class => 'btn btn-large btn-danger'}
-          %i.icon-medkit
-          Inpatient Procedures
-          %i.icon-play
-    .span6
-      .pagination-centered
-        %a{:href => outpatient_procedures_path, :class => 'btn btn-large btn-primary'}
-          %i.icon-medkit
-          Outpatient Procedures
-          %i.icon-play
+      .span6
+        .pagination-centered
+          %a{:href => inpatient_procedures_path, :class => 'btn btn-large btn-danger'}
+            %i.icon-medkit
+            Inpatient Procedures
+            %i.icon-play
+      .span6
+        .pagination-centered
+          %a{:href => outpatient_procedures_path, :class => 'btn btn-large btn-primary'}
+            %i.icon-medkit
+            Outpatient Procedures
+            %i.icon-play
     - if false
       .offset3.span6
         .muted

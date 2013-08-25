@@ -21,7 +21,7 @@ module OutpatientProceduresHelper
   def national_state_outpatient_procedure_submitted_charges_data(state_outpatient_procedures)
       state_outpatient_procedures.map do |state_outpatient_procedure|
       {
-        state: state_outpatient_procedure.provider_state,
+        state: state_outpatient_procedure.state_name,
         charges: state_outpatient_procedure.average_estimated_submitted_charges.to_i,
       }
     end
@@ -30,7 +30,7 @@ module OutpatientProceduresHelper
   def national_state_outpatient_procedure_total_payments_data(state_outpatient_procedures)
       state_outpatient_procedures.map do |state_outpatient_procedure|
       {
-        state: state_outpatient_procedure.provider_state,
+        state: state_outpatient_procedure.state_name,
         payments: state_outpatient_procedure.average_total_payments.to_i,
       }
     end
@@ -48,7 +48,7 @@ module OutpatientProceduresHelper
   def national_state_outpatient_procedure_services_data(state_outpatient_procedures)
       state_outpatient_procedures.map do |state_outpatient_procedure|
       {
-        state: state_outpatient_procedure.provider_state,
+        state: state_outpatient_procedure.state_name,
         services: state_outpatient_procedure.outpatient_services
       }
     end
