@@ -10,20 +10,8 @@
   %ul.nav
     %li.dropdown
       %a{:href => '#', :class => 'dropdown-toggle', :data => {:toggle => 'dropdown'}}
-        %i.icon-question-sign
-        %b.caret
-      %ul.dropdown-menu
-        %li
-          %a{:href => nil}
-            %i.icon-play-circle
-            HOW IT WORKS
-        %li
-          %a{:href => nil}
-            %i.icon-comment
-            ABOUT
-    %li.dropdown
-      %a{:href => '#', :class => 'dropdown-toggle', :data => {:toggle => 'dropdown'}}
         %i.icon-medkit
+        Procedures
         %b.caret
       %ul.dropdown-menu
         %li
@@ -35,21 +23,36 @@
     %li.dropdown
       %a{:href => '#', :class => 'dropdown-toggle', :data => {:toggle => 'dropdown'}}
         %i.icon-hospital
+        Hospitals
         %b.caret
       %ul.dropdown-menu
         %li
           %a{:href => health_providers_path}
             Hospitals
+    %li.dropdown
+      %a{:href => '#', :class => 'dropdown-toggle', :data => {:toggle => 'dropdown'}}
+        %i.icon-question-sign
+        %b.caret
+      %ul.dropdown-menu
+        %li
+          %a{:href => nil}
+            %i.icon-play-circle
+            HOW IT WORKS
+        %li
+          %a{:href => nil}
+            %i.icon-comment
+            ABOUT
 .navbar-form.pull-right
   - unless current_user
-    = form_tag sessions_path, :class => 'navbar-form' do
-      = text_field_tag :login, params[:login], :class => "span2", :placeholder => "Username or email"
-      = password_field_tag :password, nil, :class => "span2", :placeholder => "Password"
-      = button_tag(:type => 'submit', :class => 'btn navbar-btn') do
-        Log in <i class="icon-lock"></i>
-      %a{:href => signup_path, :class => "btn btn-primary navbar-btn"}
-        Sign up
-        %i.icon-arrow-right
+    - if false
+      = form_tag sessions_path, :class => 'navbar-form' do
+        = text_field_tag :login, params[:login], :class => "span2", :placeholder => "Username or email"
+        = password_field_tag :password, nil, :class => "span2", :placeholder => "Password"
+        = button_tag(:type => 'submit', :class => 'btn navbar-btn') do
+          Log in <i class="icon-lock"></i>
+        %a{:href => signup_path, :class => "btn btn-primary navbar-btn"}
+          Sign up
+          %i.icon-arrow-right
   - else
     - if false
       - unless current_page? root_path

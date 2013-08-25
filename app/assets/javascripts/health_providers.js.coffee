@@ -23,7 +23,8 @@ jQuery ->
       xkey: 'procedure_name'
       ykeys: ['charges', 'state_average', 'national_average']
       labels: ['Hospital','State','Nation']
-      xLabelAngle: 60
+      xLabelAngle: 40
+      xLabelMargin: 2
       preUnits: '$'
       gridTextSize: 10
 
