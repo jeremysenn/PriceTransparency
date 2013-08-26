@@ -28,7 +28,7 @@ ClearPrice::Application.routes.draw do
   resources :users
 
   root :to => "home#index"
-  about :to => "home#about"
+  match '/about' => 'home#about'
 
 #  resources :outpatient_procedures
   resources :outpatient_procedures do
