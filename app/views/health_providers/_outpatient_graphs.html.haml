@@ -1,17 +1,29 @@
 
-.row-fluid.well
+.row-fluid
   .span6
-    %h5= "Outpatient Procedures Average Submitted Charges"
+    %h5
+      = "Outpatient Procedures Average Submitted Charges"
+      %a{:class => 'btn btn-mini popup', :href => nil, 'data-toggle' => "popover", 'data-placement' => "top", 'data-content' => "#{number_to_currency(@high_charge_provider_outpatient_procedure.average_estimated_submitted_charges, :precision => 0)}", :title => "#{link_to truncate(@high_charge_provider_outpatient_procedure.apc, :length => 30), provider_outpatient_procedure_path(@high_charge_provider_outpatient_procedure)}"}
+        = "High"
+      %a{:class => 'btn btn-mini popup', :href => nil, 'data-toggle' => "popover", 'data-placement' => "top", 'data-content' => "#{number_to_currency(@low_charge_provider_outpatient_procedure.average_estimated_submitted_charges, :precision => 0)}", :title => "#{link_to truncate(@low_charge_provider_outpatient_procedure.apc, :length => 30), provider_outpatient_procedure_path(@low_charge_provider_outpatient_procedure)}"}
+        = "Low"
     = content_tag :div, "", id: "provider_outpatient_procedure_graph", data: {procedures: procedure_data(@provider_outpatient_procedures)}
-    =# content_tag :div, "", id: "provider_outpatient_procedure_graph", data: {procedures: @provider_outpatient_procedures}
   .span6
-    %h5= "Outpatient Procedures Average Total Payments"
+    %h5
+      = "Outpatient Procedures Average Total Payments"
+      %a{:class => 'btn btn-mini popup', :href => nil, 'data-toggle' => "popover", 'data-placement' => "top", 'data-content' => "#{number_to_currency(@high_payment_provider_outpatient_procedure.average_total_payments, :precision => 0)}", :title => "#{link_to truncate(@high_payment_provider_outpatient_procedure.apc, :length => 30), provider_outpatient_procedure_path(@high_payment_provider_outpatient_procedure)}"}
+        = "High"
+      %a{:class => 'btn btn-mini popup', :href => nil, 'data-toggle' => "popover", 'data-placement' => "top", 'data-content' => "#{number_to_currency(@low_payment_provider_outpatient_procedure.average_total_payments, :precision => 0)}", :title => "#{link_to truncate(@low_payment_provider_outpatient_procedure.apc, :length => 30), provider_outpatient_procedure_path(@low_payment_provider_outpatient_procedure)}"}
+        = "Low"
     = content_tag :div, "", id: "provider_outpatient_procedure_payment_graph", data: {procedures: procedure_payment_data(@provider_outpatient_procedures)}
 
-.row-fluid.well
+.row-fluid
   .span6
     %h5 Outpatient Procedures Services Performed
     = content_tag :div, "", id: "provider_outpatient_services_graph", data: {procedures: procedure_services_data(@provider_outpatient_procedures)}
   .span6
     %h5 Outpatient Procedures Average Submitted Charges
     = content_tag :div, "", id: "provider_outpatient_charges_donut_graph", data: {procedures: procedure_charges_donut_data(@provider_outpatient_procedures)}
+
+%script
+  $('.popup').popover({html: true})

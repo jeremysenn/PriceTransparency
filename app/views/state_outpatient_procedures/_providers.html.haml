@@ -7,7 +7,7 @@
       %th= simple_sortable 'average_total_payments', 'Avg. Total Payments'
       %th= simple_sortable 'outpatient_services', 'Services Performed'
   %tbody
-    - @provider_outpatient_procedures.sort_by(&:provider_name).each do |provider_outpatient_procedure|
+    - @provider_outpatient_procedures.each do |provider_outpatient_procedure|
       %tr
         %td{:style => 'display:none;'}= link_to "Show", provider_outpatient_procedure_path(provider_outpatient_procedure)
         %td= provider_outpatient_procedure.provider_name

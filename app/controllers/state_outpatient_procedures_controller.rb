@@ -1,5 +1,6 @@
 class StateOutpatientProceduresController < ApplicationController
   load_and_authorize_resource
+  helper_method :sort_column, :sort_direction
 
   def index
     @state_outpatient_procedures = StateOutpatientProcedure.all
@@ -8,7 +9,7 @@ class StateOutpatientProceduresController < ApplicationController
   def show
     @state_outpatient_procedure = StateOutpatientProcedure.find(params[:id])
     @outpatient_procedure = OutpatientProcedure.find_by_apc(@state_outpatient_procedure.apc)
-    @provider_outpatient_procedures = ProviderOutpatientProcedure.find_all_by_apc_and_provider_state(@state_outpatient_procedure.apc, @state_outpatient_procedure.provider_state)
+    @provider_outpatient_procedures = ProviderOutpatientProcedure.find_all_by_apc_and_provider_state(@state_outpatient_procedure.apc, @state_outpatient_procedure.provider_state, :order => sort_column + ' ' + sort_direction)
   end
 
   def new

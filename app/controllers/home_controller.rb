@@ -13,7 +13,7 @@ class HomeController < ApplicationController
     unless params[:q].blank?
       if params[:filter].blank? or params[:filter] == 'All'
         unless zipcode.blank?
-          @search = Sunspot.search(ProviderOutpatientProcedure, HealthProvider) do
+          @search = Sunspot.search(ProviderOutpatientProcedure, ProviderInpatientProcedure, HealthProvider) do
             fulltext params[:q]
             with :year, 2011
             with(:location).in_radius(latitude,longitude,radius)
@@ -21,7 +21,7 @@ class HomeController < ApplicationController
           end
           @results = @search.results
         else
-          @search = Sunspot.search(OutpatientProcedure, StateOutpatientProcedure, ProviderOutpatientProcedure, HealthProvider) do
+          @search = Sunspot.search(OutpatientProcedure, StateOutpatientProcedure, InpatientProcedure, StateInpatientProcedure, ProviderOutpatientProcedure, ProviderInpatientProcedure, HealthProvider) do
             fulltext params[:q]
             with :year, 2011
             paginate :page => params[:page], :per_page => 15
@@ -29,14 +29,14 @@ class HomeController < ApplicationController
         end
       elsif params[:filter] == 'Procedures'
         unless zipcode.blank?
-          @search = Sunspot.search(ProviderOutpatientProcedure) do
+          @search = Sunspot.search(ProviderOutpatientProcedure, ProviderInpatientProcedure) do
             fulltext params[:q]
             with :year, 2011
             with(:location).in_radius(latitude,longitude,radius)
             paginate :page => params[:page], :per_page => 15
           end
         else
-          @search = Sunspot.search(OutpatientProcedure, StateOutpatientProcedure, ProviderOutpatientProcedure) do
+          @search = Sunspot.search(OutpatientProcedure, InpatientProcedure, StateOutpatientProcedure, StateInpatientProcedure, ProviderOutpatientProcedure, ProviderInpatientProcedure) do
             fulltext params[:q]
             with :year, 2011
             paginate :page => params[:page], :per_page => 15

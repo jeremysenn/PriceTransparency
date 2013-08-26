@@ -1,17 +1,29 @@
 
-.row-fluid.well
+.row-fluid
   .span6
-    %h5= "Inpatient Procedures Average Covered Charges"
-    = content_tag :div, "", id: "provider_inpatient_procedure_graph", data: {procedures: procedure_inpatient_data(@provider_inpatient_procedures)}
-    =# content_tag :div, "", id: "provider_inpatient_procedure_graph", data: {procedures: @provider_inpatient_procedures}
+    %h5
+      = "Inpatient Procedures Average Covered Charges"
+      %a{:class => 'btn btn-mini popup', :href => nil, 'data-toggle' => "popover", 'data-placement' => "top", 'data-content' => "#{number_to_currency(@high_charge_provider_inpatient_procedure.average_covered_charges, :precision => 0)}", :title => "#{link_to truncate(@high_charge_provider_inpatient_procedure.drg, :length => 30), provider_inpatient_procedure_path(@high_charge_provider_inpatient_procedure)}"}
+        = "High"
+      %a{:class => 'btn btn-mini popup', :href => nil, 'data-toggle' => "popover", 'data-placement' => "top", 'data-content' => "#{number_to_currency(@low_charge_provider_inpatient_procedure.average_covered_charges, :precision => 0)}", :title => "#{link_to truncate(@low_charge_provider_inpatient_procedure.drg, :length => 30), provider_inpatient_procedure_path(@low_charge_provider_inpatient_procedure)}"}
+        = "Low"
+    = content_tag :div, "", id: "provider_inpatient_procedure_graph", data: {procedures: procedure_inpatient_data(@limited_provider_inpatient_procedures)}
   .span6
-    %h5= "Inpatient Procedures Average Total Payments"
-    = content_tag :div, "", id: "provider_inpatient_procedure_payment_graph", data: {procedures: procedure_inpatient_payment_data(@provider_inpatient_procedures)}
+    %h5
+      = "Inpatient Procedures Average Total Payments"
+      %a{:class => 'btn btn-mini popup', :href => nil, 'data-toggle' => "popover", 'data-placement' => "top", 'data-content' => "#{number_to_currency(@high_payment_provider_inpatient_procedure.average_total_payments, :precision => 0)}", :title => "#{link_to truncate(@high_payment_provider_inpatient_procedure.drg, :length => 30), provider_inpatient_procedure_path(@high_payment_provider_inpatient_procedure)}"}
+        = "High"
+      %a{:class => 'btn btn-mini popup', :href => nil, 'data-toggle' => "popover", 'data-placement' => "top", 'data-content' => "#{number_to_currency(@low_payment_provider_inpatient_procedure.average_total_payments, :precision => 0)}", :title => "#{link_to truncate(@low_payment_provider_inpatient_procedure.drg, :length => 30), provider_inpatient_procedure_path(@low_payment_provider_inpatient_procedure)}"}
+        = "Low"
+    = content_tag :div, "", id: "provider_inpatient_procedure_payment_graph", data: {procedures: procedure_inpatient_payment_data(@limited_provider_inpatient_procedures)}
 
-.row-fluid.well
+.row-fluid
   .span6
     %h5 Inpatient Procedures Total Discharges
-    = content_tag :div, "", id: "provider_inpatient_services_graph", data: {procedures: procedure_inpatient_services_data(@provider_inpatient_procedures)}
+    = content_tag :div, "", id: "provider_inpatient_services_graph", data: {procedures: procedure_inpatient_services_data(@limited_provider_inpatient_procedures)}
   .span6
     %h5 Inpatient Procedures Average Covered Charges
-    = content_tag :div, "", id: "provider_inpatient_charges_donut_graph", data: {procedures: procedure_inpatient_charges_donut_data(@provider_inpatient_procedures)}
+    = content_tag :div, "", id: "provider_inpatient_charges_donut_graph", data: {procedures: procedure_inpatient_charges_donut_data(@limited_provider_inpatient_procedures)}
+
+%script
+  $('.popup').popover({html: true})

@@ -1,15 +1,16 @@
-%table.table.table-striped{"data-provides" => "rowlink"}
+%table.table.table-striped.sortable{"data-provides" => "rowlink"}
   %thead
     %tr
       %th{:style => 'display:none;'}= "Action"
       %th= "Procedure"
-      %th= "Provider Charge"
+      %th= simple_sortable 'average_estimated_submitted_charges', 'Provider Charge'
       %th= "#{@health_provider.state_name} Average Charge"
       %th= "National Average Charge"
-      %th= "Provider Paid"
+      %th= simple_sortable 'average_total_payments', 'Provider Payment'
       %th= "#{@health_provider.state_name} Average Paid"
       %th= "National Average Paid"
-      %th= "Services Performed"
+      %th= simple_sortable 'outpatient_services', 'Services Performed'
+
   %tbody
     - @provider_outpatient_procedures.each do |provider_outpatient_procedure|
       %tr

@@ -1,3 +1,8 @@
+#cover
+  %div{:class => "alert alert-information"}
+    .pagination-centered
+      = content_tag :div, "Loading data ..."
+
 - model_class = HealthProvider
 .row-fluid
   .span12
@@ -13,10 +18,15 @@
       .btn-group
         %ul.nav.nav-pills
           %li
-            %a{:href => "#procedures", :data => {:toggle => "tab"}}
+            %a{:href => "#inpatient_procedures", :data => {:toggle => "tab"}}
               %button.btn
                 %i.icon-medkit
-                = "PROCEDURES"
+                = "INPATIENT PROCEDURES"
+          %li
+            %a{:href => "#outpatient_procedures", :data => {:toggle => "tab"}}
+              %button.btn
+                %i.icon-medkit
+                = "OUTPATIENT PROCEDURES"
           %li
             %a{:href => "#graphs", :data => {:toggle => "tab"}}
               %button.btn
@@ -43,17 +53,18 @@
             No Outpatient Procedure Graphs
       .tab-pane{:id => "location"}
         = render :partial => 'location'
-      .tab-pane{:id => "procedures"}
-        %div{ :class => "btn-group", "data-toggle" => "buttons-radio"}
-          = link_to_function 'Inpatient', "$('#outpatient').hide(); $('#inpatient').show(); ", :class => 'btn btn-success active'
-          = link_to_function 'Outpatient', "$('#outpatient').show(); $('#inpatient').hide(); ", :class => 'btn btn-success'
-        %div{:id => "inpatient"}
-          - unless @provider_inpatient_procedures.blank?
-            = render :partial => 'inpatient_procedures'
-          - else
-            None
-        %div{:id => "outpatient", :style => 'display:none'}
-          - unless @provider_outpatient_procedures.blank?
-            = render :partial => 'outpatient_procedures'
-          - else
-            None
+      .tab-pane{:id => "inpatient_procedures"}
+        - unless @provider_inpatient_procedures.blank?
+          = render :partial => 'inpatient_procedures'
+        - else
+          None
+      .tab-pane{:id => "outpatient_procedures"}
+        - unless @provider_outpatient_procedures.blank?
+          = render :partial => 'outpatient_procedures'
+        - else
+          None
+
+:javascript
+  $('.loading').on('click', function(e) {
+   $('#cover').show();
+  });

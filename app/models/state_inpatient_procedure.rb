@@ -3,6 +3,13 @@ class StateInpatientProcedure < ActiveRecord::Base
 
   include ActionView::Helpers
 
+  ### SUNSPOT SOLR SEARCHING ###
+  searchable do
+    text :drg, :state_name
+
+    integer :year
+  end
+
   def state_name
     states.invert[provider_state]
   end

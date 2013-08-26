@@ -26,7 +26,7 @@ jQuery ->
       ykeys: ['charges', 'state_average', 'national_average']
       labels: ['Hospital','State','Nation']
       xLabelAngle: 40
-      xLabelMargin: 2
+      xLabelMargin: 1
       preUnits: '$'
       gridTextSize: 10
 
@@ -37,7 +37,8 @@ jQuery ->
       xkey: 'procedure_name'
       ykeys: ['payments', 'state_average', 'national_average']
       labels: ['Hospital','State','Nation']
-      xLabelAngle: 60
+      xLabelAngle: 40
+      xLabelMargin: 1
       preUnits: '$'
       gridTextSize: 10
 
@@ -60,12 +61,15 @@ jQuery ->
       element: "provider_inpatient_procedure_graph"
       data: $('#provider_inpatient_procedure_graph').data('procedures')
       xkey: 'procedure_name'
+      #ykeys: ['charges', 'state_average', 'national_average']
       ykeys: ['charges', 'state_average', 'national_average']
       labels: ['Hospital','State','Nation']
-      #xLabelAngle: 40
-      #xLabelMargin: 2
+      xLabelAngle: 40
+      xLabelMargin: 1
       preUnits: '$'
       gridTextSize: 10
+      hideHover: 'auto'
+      #axes: false
 
   if $('#provider_inpatient_procedure_payment_graph').length
     Morris.Bar
@@ -74,7 +78,10 @@ jQuery ->
       xkey: 'procedure_name'
       ykeys: ['payments', 'state_average', 'national_average']
       labels: ['Hospital','State','Nation']
-      #xLabelAngle: 60
+      xLabelAngle: 40
+      xLabelMargin: 1
       preUnits: '$'
       gridTextSize: 10
+      hideHover: 'auto'
+  #   axes: false
       

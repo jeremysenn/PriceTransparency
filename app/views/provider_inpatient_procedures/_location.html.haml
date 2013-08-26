@@ -1,0 +1,37 @@
+.span4
+  %h5
+    %a{:href => health_provider_path(@health_provider)}
+      %i.icon-hospital
+      = @provider_inpatient_procedure.provider_name
+  %p
+    %strong Address
+    %br
+    = @provider_inpatient_procedure.pretty_address
+  %p
+    %strong= "Region"
+    %br
+    = @provider_inpatient_procedure.hospital_referral_region_description
+.span4
+  %p= link_to image_tag("http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@provider_inpatient_procedure.health_provider.latitude}%2C#{@provider_inpatient_procedure.health_provider.longitude}"), '#map', "data-toggle" => "modal", :type => "button", :class => 'thumbnail'
+.span4
+  %p= link_to image_tag("http://maps.googleapis.com/maps/api/streetview?size=2000x200&location=#{@provider_inpatient_procedure.health_provider.latitude},%20#{@provider_inpatient_procedure.health_provider.longitude}&heading=235&sensor=false"), '#street', "data-toggle" => "modal", :type => "button", :class => 'thumbnail'
+%div{:id => "map", :class => "modal", :style => "display:none;"}
+  .modal-header
+    = link_to "×", '#', :class => "close", "data-dismiss" => "modal"
+    %p
+      %strong= @provider_inpatient_procedure.health_provider.name
+    = @provider_inpatient_procedure.health_provider.full_address
+  .modal-body
+    = image_tag "http://maps.google.com/maps/api/staticmap?size=550x300&sensor=false&zoom=16&markers=#{@provider_inpatient_procedure.health_provider.latitude}%2C#{@provider_inpatient_procedure.health_provider.longitude}"
+  .modal-footer
+    = link_to 'Close', '#', :class => 'btn', "data-dismiss" => "modal"
+%div{:id => "street", :class => "modal", :style => "display:none;"}
+  .modal-header
+    = link_to "×", '#', :class => "close", "data-dismiss" => "modal"
+    %p
+      %strong= @provider_inpatient_procedure.health_provider.name
+    = @provider_inpatient_procedure.health_provider.full_address
+  .modal-body
+    = image_tag "http://maps.googleapis.com/maps/api/streetview?size=2000x200&location=#{@provider_inpatient_procedure.health_provider.latitude},%20#{@provider_inpatient_procedure.health_provider.longitude}&heading=235&sensor=false"
+  .modal-footer
+    = link_to 'Close', '#', :class => 'btn', "data-dismiss" => "modal"

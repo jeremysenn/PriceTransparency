@@ -1,4 +1,10 @@
 - model_class = OutpatientProcedure
+
+#cover
+  %div{:class => "alert alert-information"}
+    .pagination-centered
+      = content_tag :div, "Loading data ..."
+
 .row-fluid
   .span12
     %h2
@@ -96,4 +102,8 @@
 :javascript
   $('.selectpicker').selectpicker({
     style: 'btn-warning'
+  });
+
+  $('.loading').on('click', function(e) {
+   $('#cover').show();
   });

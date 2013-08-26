@@ -5,6 +5,9 @@ class ProviderInpatientProceduresController < ApplicationController
 
   def show
     @provider_inpatient_procedure = ProviderInpatientProcedure.find(params[:id])
+    @inpatient_procedure = InpatientProcedure.find_by_drg(@provider_inpatient_procedure.drg)
+    @health_provider = @provider_inpatient_procedure.health_provider
+    @state_inpatient_procedure = StateInpatientProcedure.find_by_drg_and_provider_state(@provider_inpatient_procedure.drg, @provider_inpatient_procedure.provider_state)
   end
 
   def new

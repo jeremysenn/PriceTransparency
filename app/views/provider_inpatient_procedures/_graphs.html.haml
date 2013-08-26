@@ -1,0 +1,7 @@
+.row-fluid
+  .span6
+    %h5 Average Covered Charges
+    = content_tag :div, "", id: "provider_inpatient_procedure_covered_charges_graph", data: {procedure: provider_inpatient_procedure_covered_charges_data(@provider_inpatient_procedure)}
+  .span6
+    %h5 Average Total Payments
+    = content_tag :div, "", id: "provider_inpatient_procedure_total_payments_graph", data: {procedure: provider_inpatient_procedure_total_payments_data(@provider_inpatient_procedure)}
