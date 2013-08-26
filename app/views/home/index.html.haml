@@ -30,7 +30,7 @@
     .span6.well
       .pagination-centered
       = form_tag root_path, :method => :get do
-        %p= text_field_tag :q, nil, :style => 'height:34px; font-size:large;', :placeholder => "Search procedures, hospitals, states, regions, ...", :id => "appendedInputButton", :class => 'span12', :value => params[:q]
+        %p= text_field_tag :q, nil, :style => 'height:44px; font-size:large;', :placeholder => "Search procedures, hospitals, states, regions, ...", :id => "appendedInputButton", :class => 'span12', :value => params[:q]
         .input-prepend
           = select_tag :radius, options_for_select([['Within 10 Miles', 10], ['Within 50 Miles', 50], ['Within 100 Miles', 100], ['Within 500 Miles', 500]], params[:radius]), :include_blank => false, :class => "selectpicker show-tick show-menu-arrow span9"
           = text_field_tag :zip, nil, :placeholder => "Zipcode (optional)", :class => 'span11', :value => params[:zip]
