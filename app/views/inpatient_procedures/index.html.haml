@@ -25,7 +25,7 @@
     - @inpatient_procedures.each do |inpatient_procedure|
       %tr
         %td{:style => 'display:none;'}= link_to "Show", inpatient_procedure_path(inpatient_procedure), :class => 'loading'
-        %td= inpatient_procedure.drg
+        %td= truncate(inpatient_procedure.drg, :limit => 15)
         %td= number_to_currency(inpatient_procedure.average_covered_charges)
         %td= number_to_currency(inpatient_procedure.average_total_payments)
         %td= inpatient_procedure.total_discharges

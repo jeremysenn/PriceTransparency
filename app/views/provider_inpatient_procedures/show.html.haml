@@ -58,3 +58,6 @@
       - if false
         .tab-pane{:id => "procedures"}
           = link_to @provider_inpatient_procedure.drg, inpatient_procedure_path(@inpatient_procedure)
+
+.form-actions
+  = link_to t('.back', :default => t("helpers.links.back")), :back, :class => 'btn'

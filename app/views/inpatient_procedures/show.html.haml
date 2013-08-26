@@ -74,6 +74,8 @@
             Nothing found
             %br
             &nbsp;
+.form-actions
+  = link_to t('.back', :default => t("helpers.links.back")), inpatient_procedures_path, :class => 'btn'
 
 :javascript
   $('.selectpicker').selectpicker({

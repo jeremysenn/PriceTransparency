@@ -7,7 +7,7 @@
     %h4
       .muted.pull-right
         Year 2011
-= paginate @health_providers
+
 %table.table.table-striped{"data-provides" => "rowlink"}
   %thead
     %tr
@@ -31,7 +31,8 @@
         %td= health_provider.zipcode
         %td= health_provider.hospital_referral_region_description
 
-  =# link_to t('.new', :default => t("helpers.links.new")), new_health_provider_path, :class => 'btn btn-primary'
+= paginate @health_providers
+
 - if false
   = link_to t('.new', :default => t("helpers.links.new")), new_health_provider_path, :class => 'btn btn-primary'
   %hr

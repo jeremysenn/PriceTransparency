@@ -64,6 +64,9 @@
         - else
           None
 
+.form-actions
+  = link_to t('.back', :default => t("helpers.links.back")), :back, :class => 'btn'
+
 :javascript
   $('.loading').on('click', function(e) {
    $('#cover').show();

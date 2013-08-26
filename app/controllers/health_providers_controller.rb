@@ -11,7 +11,7 @@ class HealthProvidersController < ApplicationController
     @health_provider = HealthProvider.find(params[:id])
     @provider_outpatient_procedures = ProviderOutpatientProcedure.find_all_by_provider_id(@health_provider.provider_id, :order => outpatient_procedure_sort_column + ' ' + sort_direction)
     @provider_inpatient_procedures = ProviderInpatientProcedure.find_all_by_provider_id(@health_provider.provider_id, :order => inpatient_procedure_sort_column + ' ' + sort_direction)
-    @limited_provider_inpatient_procedures = ProviderInpatientProcedure.find_all_by_provider_id(@health_provider.provider_id, :limit => 40, :order => inpatient_procedure_sort_column + ' ' + sort_direction)
+    @limited_provider_inpatient_procedures = ProviderInpatientProcedure.find_all_by_provider_id(@health_provider.provider_id, :limit => 30, :order => inpatient_procedure_sort_column + ' ' + sort_direction)
 
     @low_charge_provider_inpatient_procedure = @provider_inpatient_procedures.sort_by(&:average_covered_charges).first
     @high_charge_provider_inpatient_procedure = @provider_inpatient_procedures.sort_by(&:average_covered_charges).last

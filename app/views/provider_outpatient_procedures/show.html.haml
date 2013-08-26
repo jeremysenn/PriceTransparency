@@ -59,6 +59,9 @@
         .tab-pane{:id => "procedures"}
           = link_to @provider_outpatient_procedure.apc, outpatient_procedure_path(@outpatient_procedure)
 
+.form-actions
+  = link_to t('.back', :default => t("helpers.links.back")), :back, :class => 'btn'
+
 - if false
   .form-actions
     = link_to t('.back', :default => t("helpers.links.back")), provider_outpatient_procedures_path, :class => 'btn'

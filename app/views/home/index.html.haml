@@ -1,3 +1,29 @@
+.row-fluid
+  %iframe{:class => "container well well-small span6", :style => "height: 400px; background-color: #f5e5c5;", :src => "http://#{request.host_with_port}/inpatient_procedures/93"}
+  %iframe{:class => "container well well-small span6", :style => "height: 400px; background-color: #f5e5c5;", :src => "http://#{request.host_with_port}/outpatient_procedures/20"}
+
+.row-fluid
+  %iframe{:class => "container well well-small span6", :style => "height: 400px; background-color: #f5e5c5;", :src => "http://#{request.host_with_port}/inpatient_procedures"}
+  %iframe{:class => "container well well-small span6", :style => "height: 400px; background-color: #f5e5c5;", :src => "http://#{request.host_with_port}/outpatient_procedures"}
+
+
+.row-fluid
+  %iframe{:class => "container well well-small span6", :style => "height: 400px; background-color: #f5e5c5; overflow-x:hidden;", :src => "http://#{request.host_with_port}/health_providers/100"}
+  %iframe{:class => "container well well-small span6", :style => "height: 400px; background-color: #f5e5c5; overflow-x:hidden;", :src => "http://#{request.host_with_port}/health_providers"}
+
+.row-fluid
+  %iframe{:class => "container well well-small span6", :style => "height: 400px; background-color: #f5e5c5;", :src => "http://#{request.host_with_port}/state_inpatient_procedures/93"}
+  %iframe{:class => "container well well-small span6", :style => "height: 400px; background-color: #f5e5c5;", :src => "http://#{request.host_with_port}/state_outpatient_procedures/20"}
+
+.row-fluid
+  %iframe{:class => "container well well-small span6", :style => "height: 400px; background-color: #f5e5c5;", :src => "http://#{request.host_with_port}/provider_inpatient_procedures/93"}
+  %iframe{:class => "container well well-small span6", :style => "height: 400px; background-color: #f5e5c5;", :src => "http://#{request.host_with_port}/provider_outpatient_procedures/20"}
+
+
+
+%hr
+
+
 - if params[:q].blank?
   .row-fluid
     .span6.well{:style => "height: 200px; "}
