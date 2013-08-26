@@ -1,6 +1,6 @@
 - if params[:q].blank?
   .row-fluid
-    .span6.well{:style => "height: 33%; "}
+    .span6.well{:style => "height: 250px; "}
       .pagination-centered
         %p
           %a{:href => inpatient_procedures_path, :class => 'btn btn-large btn-info'}
@@ -27,7 +27,7 @@
             &nbsp;
             &nbsp;
 
-    .span6.well{:style => "height: 33%; "}
+    .span6.well{:style => "height: 250px; "}
       .pagination-centered
         = form_tag root_path, :method => :get do
           %p= text_field_tag :q, nil, :style => 'height:44px; font-size:large;', :placeholder => "Search procedures, hospitals, states, regions, ...", :id => "appendedInputButton", :class => 'span12', :value => params[:q]
