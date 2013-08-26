@@ -33,10 +33,11 @@
             .span12
               = render 'layouts/messages'
               = yield
-    %div{:class => "navbar navbar-fixed-bottom"}
-      %p{:class => "muted credit", :style => "text-align:center"}
-        %i.icon-ok-sign
-        = "Procedure Price Check - Copyright #{Date.today.year}"
+    - if false
+      %div{:class => "navbar navbar-fixed-bottom"}
+        %p{:class => "muted credit", :style => "text-align:center"}
+          %i.icon-ok-sign
+          = "Procedure Price Check - Copyright #{Date.today.year}"
       - if false
         #footer
           .container
