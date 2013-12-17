@@ -30,6 +30,6 @@ class UsersController < ApplicationController
   end
 
   def my_house
-
+    render :layout => nil
   end
 end
