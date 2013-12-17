@@ -28,4 +28,8 @@ class UsersController < ApplicationController
       render :action => 'edit'
     end
   end
+
+  def my_house
+
+  end
 end

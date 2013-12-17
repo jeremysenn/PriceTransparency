@@ -25,7 +25,9 @@ ClearPrice::Application.routes.draw do
 
   resources :sessions
 
-  resources :users
+  resources :users do
+    collection { get :my_house }
+  end
 
   root :to => "home#index"
   match '/about' => 'home#about'
